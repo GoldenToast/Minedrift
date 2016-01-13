@@ -1,11 +1,13 @@
 ﻿using UnityEngine;
 using System.Collections;
 
-public class ShipMovement : MonoBehaviour {
+public class PlayerShipMovement : MonoBehaviour {
 
     private const string HORIZONTAL = "Horizontal";
     private const string VERTICAL = "Vertical";
 
+	public float forwardSpeed;
+	public float rotationSpeed;
     public Vector2 moveDirection;
 
     private Rigidbody2D rb;
@@ -13,7 +15,6 @@ public class ShipMovement : MonoBehaviour {
     // Use this for initialization
     void Start () {
         rb = GetComponent<Rigidbody2D>();
-        //TEST
 	}
 	
 	// Update is called once per frame
@@ -25,6 +26,7 @@ public class ShipMovement : MonoBehaviour {
     }
 
     void FixedUpdate() {
-        rb.AddForce(transform.up * moveDirection.x);
+		rb.AddForce(transform.up * moveDirection.y * forwardSpeed,ForceMode2D.Impulse);
+		rb.AddTorque(-moveDirection.x * rotationSpeed,ForceMode2D.Impulse);
     }
 }
