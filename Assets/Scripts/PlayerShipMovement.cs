@@ -1,7 +1,8 @@
 ﻿using UnityEngine;
+using UnityEngine.Networking;
 using System.Collections;
 
-public class PlayerShipMovement : MonoBehaviour {
+public class PlayerShipMovement : NetworkBehaviour {
 
     private const string HORIZONTAL = "Horizontal";
     private const string VERTICAL = "Vertical";
@@ -19,6 +20,10 @@ public class PlayerShipMovement : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
+        if (!isLocalPlayer)
+        {
+            return;
+        }
         float x = Input.GetAxis(HORIZONTAL);
         float y = Input.GetAxis(VERTICAL);
 
@@ -26,7 +31,12 @@ public class PlayerShipMovement : MonoBehaviour {
     }
 
     void FixedUpdate() {
-		rb.AddForce(transform.forward * moveDirection.y * forwardSpeed,ForceMode.Impulse);
+        if (!isLocalPlayer)
+        {
+            return;
+        }
+        rb.AddForce(transform.forward * moveDirection.y * forwardSpeed,ForceMode.Impulse);
 		rb.AddTorque(transform.up * moveDirection.x * rotationSpeed,ForceMode.Impulse);
     }
+
 }
