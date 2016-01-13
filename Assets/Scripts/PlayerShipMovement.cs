@@ -10,11 +10,11 @@ public class PlayerShipMovement : MonoBehaviour {
 	public float rotationSpeed;
     public Vector2 moveDirection;
 
-    private Rigidbody2D rb;
+    private Rigidbody rb;
 
     // Use this for initialization
     void Start () {
-        rb = GetComponent<Rigidbody2D>();
+        rb = GetComponent<Rigidbody>();
 	}
 	
 	// Update is called once per frame
@@ -26,7 +26,7 @@ public class PlayerShipMovement : MonoBehaviour {
     }
 
     void FixedUpdate() {
-		rb.AddForce(transform.up * moveDirection.y * forwardSpeed,ForceMode2D.Impulse);
-		rb.AddTorque(-moveDirection.x * rotationSpeed,ForceMode2D.Impulse);
+		rb.AddForce(transform.forward * moveDirection.y * forwardSpeed,ForceMode.Impulse);
+		rb.AddTorque(transform.up * moveDirection.x * rotationSpeed,ForceMode.Impulse);
     }
 }
