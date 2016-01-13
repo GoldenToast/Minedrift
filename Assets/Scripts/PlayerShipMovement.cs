@@ -13,6 +13,7 @@ public class ShipMovement : MonoBehaviour {
     // Use this for initialization
     void Start () {
         rb = GetComponent<Rigidbody2D>();
+        //TEST
 	}
 	
 	// Update is called once per frame
