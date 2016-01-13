@@ -4,3 +4,7 @@ Temp
 /Assembly-CSharp-Editor.csproj
 /Assembly-CSharp-firstpass.csproj
 /Assembly-CSharp.csproj
+obj
+UpgradeLog.htm
+Minedrift.userprefs
+/*.sln
