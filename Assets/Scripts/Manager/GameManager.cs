@@ -27,7 +27,7 @@ public class GameManager : MonoBehaviour
 		SpawnAllPlayers();
         SetCameraTargets();
 
-        //StartCoroutine(GameLoop());
+        StartCoroutine(GameLoop());
     }
 
 
@@ -88,7 +88,7 @@ public class GameManager : MonoBehaviour
     {
 		EnableTankControl ();
 		m_MessageText.text = "";
-		while (!OneTankLeft()) {
+		while (!OneLeft()) {
 			yield return null;
 		}
     }
@@ -109,17 +109,15 @@ public class GameManager : MonoBehaviour
     }
 
 
-    private bool OneTankLeft()
+    private bool OneLeft()
     {
-        int numTanksLeft = 0;
-
+        int numLeft = 0;
         for (int i = 0; i < m_Players.Length; i++)
         {
             if (m_Players[i].m_Instance.activeSelf)
-                numTanksLeft++;
+                numLeft++;
         }
-
-        return numTanksLeft <= 1;
+        return numLeft <= 1;
     }
 
 
