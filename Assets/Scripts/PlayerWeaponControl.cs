@@ -1,8 +1,7 @@
 ﻿using UnityEngine;
-using UnityEngine.Networking;
 using System.Collections;
 
-public class PlayerWeaponControl : NetworkBehaviour {
+public class PlayerWeaponControl : MonoBehaviour {
 
     private const string MOUNT1 = "Mount1";
     private const string MOUNT2 = "Mount2";
@@ -27,10 +26,6 @@ public class PlayerWeaponControl : NetworkBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
-        if (!isLocalPlayer)
-        {
-            return;
-        }
         lastShot -= 1 * Time.deltaTime;
         if (lastShot <= 0 && Input.GetButton(FIRE)){
             fire(bulletPrefab);
