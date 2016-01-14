@@ -86,6 +86,7 @@
     <Compile Include="Assets\Scripts\Hitable.cs" />
     <Compile Include="Assets\Scripts\Manager\GameManager.cs" />
     <Compile Include="Assets\Scripts\Manager\PlayerManager.cs" />
+    <Compile Include="Assets\Scripts\Shaker.cs" />
     <Compile Include="Assets\Scripts\Spaceship\BulletMovement.cs" />
     <Compile Include="Assets\Scripts\Spaceship\EngineControls.cs" />
     <Compile Include="Assets\Scripts\Spaceship\PlayerShipMovement.cs" />

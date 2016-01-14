@@ -1,26 +1,45 @@
 ﻿using UnityEngine;
+using UnityEngine.UI;
 using System.Collections;
 
 public class Hitable : MonoBehaviour {
-	public Object test;
-	public GameObject explosionPrefab;
+
+    public Slider slider;
+    public Image sliderFillImage;
+    public Color fullHealthColor = Color.green;
+    public Color zeroHealthColor = Color.red;
+
+
+    public GameObject explosionPrefab;
 	public int health = 100;
+    public int currentHealth;
 
     private float SecondsUntilDestroy = 5;
     private Vector3 spawnPosition;
 
     void Start() {
         spawnPosition = transform.position;
+        currentHealth = health;
+    }
+
+    private void setUIHealth() {
+        if (slider == null) {
+            return;
+        }
+        slider.value = currentHealth;
+        sliderFillImage.color = Color.Lerp(fullHealthColor,zeroHealthColor, currentHealth/health);
     }
 
 	public void takeDamage(int damage){
-		health -= damage;
-		if (health <= 0) {
+        currentHealth -= damage;
+        setUIHealth();
+		if (currentHealth <= 0) {
             DoExplosion(transform.position, transform.rotation);
 			Destroy (this.gameObject);
             //Respawn();
         }
-	}
+
+    }
 
     void Respawn(){
 		transform.position = spawnPosition;
