@@ -10,15 +10,18 @@ public class Hitable : MonoBehaviour {
     public Color zeroHealthColor = Color.red;
 
     public GameObject explosionPrefab;
-	public int health = 100;
+    public GameObject enemySpawn;
+    public int health = 100;
     public int currentHealth;
 
     private float SecondsUntilDestroy = 5;
     private Vector3 spawnPosition;
+    private bool spawned;
 
     void Start() {
         spawnPosition = transform.position;
         currentHealth = health;
+        spawned = false;
     }
 
     private void setUIHealth() {
@@ -41,11 +44,19 @@ public class Hitable : MonoBehaviour {
         setUIHealth();
 		if (currentHealth <= 0) {
             DoExplosion(transform.position, transform.rotation);
+            SpawnEnemy(transform.position, transform.rotation);
 
 			Destroy (this.gameObject, .3f);
             //Respawn();
         }
 
+    }
+
+    private void SpawnEnemy(Vector3 pos, Quaternion rotation)
+    {
+        if (enemySpawn != null && !spawned) {
+            var go = Instantiate(enemySpawn, pos, rotation);
+        }
     }
 
     void Respawn(){
@@ -56,6 +67,5 @@ public class Hitable : MonoBehaviour {
         Debug.Log("Explode");
         var go = Instantiate(explosionPrefab, pos, rotation);
         Destroy(go, 5.0f);
-        GetComponent<AudioSource>().Play(0);
 	}
 }
