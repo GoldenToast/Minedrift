@@ -18,6 +18,11 @@ public class BulletMovement : MonoBehaviour {
 
     void OnTriggerEnter(Collider other)
     {
+        if (other.tag.Equals(this.tag))
+        {
+            //Debug.Log("NoDamage to " + other);
+            return;
+        }
         Debug.Log("Laser enters " + other);
         if (other.tag.Equals(Tags.ENEMY))
         {
@@ -29,10 +34,6 @@ public class BulletMovement : MonoBehaviour {
         {
             Debug.Log("Damage " + other.gameObject);
             other.gameObject.GetComponent<Hitable>().takeDamage(damage);
-        }
-        if (other.tag.Equals(this.tag))
-        {
-            Debug.Log("NoDamage to " + other);
         }
        
     }

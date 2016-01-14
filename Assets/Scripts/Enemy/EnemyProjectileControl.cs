@@ -28,7 +28,7 @@ public class EnemyProjectileControl : MonoBehaviour {
 	// Update is called once per frame
 	void Update () {
         lastShot -= 1 * Time.deltaTime;
-        if (lastShot <= 0)
+        if (lastShot <= 0 && shootBehavior.IsPlayerInRange)
         {
             fire(weaponPrefab);
         }
