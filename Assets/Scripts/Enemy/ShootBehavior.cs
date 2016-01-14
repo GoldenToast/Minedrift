@@ -45,11 +45,8 @@ public class ShootBehavior : EnemyAttackBehavior {
 
 			if (!fightMode) {
 				return destination = Vector3.Lerp (base.transform.position, base.transform.position * 1.1f, Time.deltaTime);
-			} else {
-				
+			} else {				
 				Vector3 delta = (player.position - this.transform.position);
-//				Debug.Log ("X: " + player.position.x + " " + shiver.x);
-//				Debug.Log ("Y: " + player.position.z + " " + shiver.z);
 				return destination = player.position + delta;
 			}
 		}
