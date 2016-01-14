@@ -41,7 +41,7 @@ public class PlayerShipMovement : MonoBehaviour {
 
     void FixedUpdate() {
         rb.AddForce(transform.forward * moveDirection.y * forwardSpeed,ForceMode.Impulse);
-		rb.AddTorque(transform.up * moveDirection.x * rotationSpeed,ForceMode.Impulse);
+		rb.AddTorque(transform.up * moveDirection.x * rotationSpeed,ForceMode.VelocityChange);
     }
 
 }
