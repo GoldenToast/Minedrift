@@ -30,6 +30,13 @@ public class Hitable : MonoBehaviour {
     }
 
 	public void takeDamage(int damage){
+        Shaker shaker = this.GetComponent<Shaker>();
+
+        if(shaker != null)
+        {
+            shaker.doShake();
+        }
+
         currentHealth -= damage;
         setUIHealth();
 		if (currentHealth <= 0) {

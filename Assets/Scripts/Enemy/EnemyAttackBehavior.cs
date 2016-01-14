@@ -1,9 +1,9 @@
 ﻿using UnityEngine;
 using System.Collections;
 
-public class EnemyAttackBehavior : NavigationBehavior {
+public abstract class EnemyAttackBehavior : NavigationBehavior {
 	
-	private Transform player = null;
+	protected Transform player = null;
 
 	public float Speed;
 	public float Acceleration;
@@ -23,21 +23,9 @@ public class EnemyAttackBehavior : NavigationBehavior {
 			wanderBehavior.enabled = true;
 		}
 	}
-
-	public override Vector3 GetNavigationPosition () {
-		return player == null ? destination : destination = player.position;
-	}
-
-	new void Start () {
-		base.Start ();
-	}
-
+		
 	protected override void SetSpeedAndAcceleration () {
 		base.agent.speed = Speed;
 		base.agent.acceleration = Acceleration;
-	}
-
-	new void Update () {
-		base.Update ();
 	}
 }

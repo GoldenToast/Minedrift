@@ -4,9 +4,9 @@ using System;
 
 public class Shaker : MonoBehaviour, IActor
 {
-    public float amplitudeX = 1;
+    public float amplitudeX = 0.2f;
     public float amplitudeY = 0;
-    public float amplitudeZ = 1;
+    public float amplitudeZ = 0.2f;
     public float shakesPerSecX = 15;
     public float shakesPerSecY = 0;
     public float shakesPerSecZ = 15;
@@ -89,10 +89,7 @@ public class Shaker : MonoBehaviour, IActor
 			requiredCorrectionWasApplied = false;
 			animationIsActive = true;
 			shakeVectorSum = new Vector3 ();
-		} else {
-			durationInSec += animSecondsLeft;
-			animSecondsLeft *= 2;
-		}
+		} 
     }
 
     public void act()
