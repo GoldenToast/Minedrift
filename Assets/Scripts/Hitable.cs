@@ -2,7 +2,7 @@
 using System.Collections;
 
 public class Hitable : MonoBehaviour {
-
+	public Object test;
 	public GameObject explosionPrefab;
 	public int health = 100;
 
@@ -28,9 +28,6 @@ public class Hitable : MonoBehaviour {
 	
 	void DoExplosion(Vector3 pos, Quaternion rotation){
         Debug.Log("Explode");
-        //GameObject explosion = Instantiate(explosionPrefab, pos, rotation) as GameObject;
         GetComponent<AudioSource>().Play(0);
-
-		//Destroy (explosion, SecondsUntilDestroy);wd
 	}
 }
