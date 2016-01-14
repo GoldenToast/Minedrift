@@ -9,7 +9,6 @@ public class Hitable : MonoBehaviour {
     public Color fullHealthColor = Color.green;
     public Color zeroHealthColor = Color.red;
 
-
     public GameObject explosionPrefab;
 	public int health = 100;
     public int currentHealth;
@@ -42,7 +41,7 @@ public class Hitable : MonoBehaviour {
         setUIHealth();
 		if (currentHealth <= 0) {
             DoExplosion(transform.position, transform.rotation);
-			Destroy (this.gameObject);
+			Destroy (this.gameObject, .3f);
             //Respawn();
         }
 

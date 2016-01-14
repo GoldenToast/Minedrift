@@ -25,6 +25,11 @@ public class BulletMovement : MonoBehaviour {
             other.gameObject.GetComponent<Hitable>().takeDamage(damage);
             Destroy(this.gameObject);
         }
+        if (other.tag.Equals(Tags.PLAYER))
+        {
+            Debug.Log("Damage " + other.gameObject);
+            other.gameObject.GetComponent<Hitable>().takeDamage(damage);
+        }
         if (other.tag.Equals(this.tag))
         {
             Debug.Log("NoDamage to " + other);
