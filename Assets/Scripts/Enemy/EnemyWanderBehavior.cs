@@ -12,21 +12,19 @@ public class EnemyWanderBehavior : NavigationBehavior {
 	}
 
 	public bool IsApplicable () {
-		return Vector3.Distance (this.transform.position, destination) < 1;
+		return Vector3.Distance (this.transform.position, destination) < 3;
 	}
 
 	public override Vector3 GetNavigationPosition () {
 		return IsApplicable () ? destination = RandPosition () : destination;
 	}
 
-	void OnDrawGizmos () {
-		if (destination != null) {
-
-			Gizmos.color = Color.yellow;
-			Gizmos.DrawSphere (destination, .25f);
-		}
-
-	}
+//	void OnDrawGizmos () {
+//		if (destination != null) {
+//			Gizmos.color = Color.yellow;
+//			Gizmos.DrawSphere (destination, .25f);
+//		}
+//	}
 
 	// Use this for initialization
 	new void Start () {

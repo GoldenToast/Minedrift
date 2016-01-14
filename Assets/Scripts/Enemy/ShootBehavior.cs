@@ -12,10 +12,11 @@ public class ShootBehavior : EnemyAttackBehavior {
 		var targetRotation = Quaternion.LookRotation (target - base.transform.position, Vector3.up);
 		transform.rotation = Quaternion.Slerp (base.transform.rotation, targetRotation, Time.deltaTime * 2.0f);
 
-		if (Vector3.Distance (base.transform.position, player.position) < 5) {
-			return destination;
+		if (Vector3.Distance (base.transform.position, player.position) < 7) {
+			return destination = Vector3.Lerp (base.transform.position, base.transform.position * 1.1f, Time.deltaTime);
 		}
-		return player == null ? destination : destination = player.position;
+
+		return destination = Vector3.Lerp (base.transform.position, player.position, Time.deltaTime);
 	}
 
 	// Use this for initialization
