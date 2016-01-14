@@ -1,7 +1,8 @@
 ﻿using UnityEngine;
 using System.Collections;
+using System;
 
-public class Shaker : MonoBehaviour
+public class Shaker : MonoBehaviour, IActor
 {
     public float amplitudeX = 1;
     public float amplitudeY = 0;
@@ -29,8 +30,6 @@ public class Shaker : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        Vector3 rand = Random.insideUnitSphere;
-
         animationIsActive = animSecondsLeft > 0;
 
         if (animationIsActive)
@@ -41,7 +40,7 @@ public class Shaker : MonoBehaviour
 
             if (shakesPerSecX > 0)
             {
-				sinX = Random.Range(randomFactorMin, randomFactorMax) * Mathf.Sin(2 * Mathf.PI * shakesPerSecX * timeSpentInSecs);
+				sinX = UnityEngine.Random.Range(randomFactorMin, randomFactorMax) * Mathf.Sin(2 * Mathf.PI * shakesPerSecX * timeSpentInSecs);
             }
             else
             {
@@ -50,7 +49,7 @@ public class Shaker : MonoBehaviour
 
             if (shakesPerSecY > 0)
             {
-				sinY = Random.Range(randomFactorMin, randomFactorMax) *  Mathf.Sin(2 * Mathf.PI * shakesPerSecY * timeSpentInSecs);
+				sinY = UnityEngine.Random.Range(randomFactorMin, randomFactorMax) *  Mathf.Sin(2 * Mathf.PI * shakesPerSecY * timeSpentInSecs);
             }
             else
             {
@@ -59,7 +58,7 @@ public class Shaker : MonoBehaviour
 
             if (shakesPerSecZ > 0)
             {
-				sinZ = Random.Range(randomFactorMin, randomFactorMax) *  Mathf.Sin(2 * Mathf.PI * shakesPerSecZ * timeSpentInSecs);
+				sinZ = UnityEngine.Random.Range(randomFactorMin, randomFactorMax) *  Mathf.Sin(2 * Mathf.PI * shakesPerSecZ * timeSpentInSecs);
             }
             else
             {
@@ -94,5 +93,10 @@ public class Shaker : MonoBehaviour
 			durationInSec += animSecondsLeft;
 			animSecondsLeft *= 2;
 		}
+    }
+
+    public void act()
+    {
+        this.doShake();
     }
 }
