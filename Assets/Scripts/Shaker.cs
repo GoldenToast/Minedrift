@@ -68,7 +68,6 @@ public class Shaker : MonoBehaviour, IActor
             float scaleFactor = animSecondsLeft / durationInSec;
             // translation vector
             Vector3 translate = new Vector3(sinX * amplitudeX, sinY * amplitudeY, sinZ * amplitudeZ);
-			Debug.Log ("Translation: " + translate);
             translate *= scaleFactor;
             shakeVectorSum += translate;
             transform.position += translate;

@@ -51,7 +51,6 @@ public class GameManager : MonoBehaviour
         {
             targets[i] = m_Players[i].m_Instance.transform;
         }
-
         m_CameraControl.m_Targets = targets;
     }
 

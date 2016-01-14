@@ -76,10 +76,13 @@
   <ItemGroup>
     <Compile Include="Assets\Scripts\Camera\CameraControl.cs" />
     <Compile Include="Assets\Scripts\Enemy\EnemyAttackBehavior.cs" />
+    <Compile Include="Assets\Scripts\Enemy\EnemyMeleeControl.cs" />
+    <Compile Include="Assets\Scripts\Enemy\EnemyProjectileControl.cs" />
     <Compile Include="Assets\Scripts\Enemy\EnemyWanderBehavior.cs" />
-    <Compile Include="Assets\Scripts\Enemy\EnemyWeaponControl.cs" />
     <Compile Include="Assets\Scripts\Enemy\MeleeWeapon.cs" />
     <Compile Include="Assets\Scripts\Enemy\NavigationBehavior.cs" />
+    <Compile Include="Assets\Scripts\Enemy\RammBehavior.cs" />
+    <Compile Include="Assets\Scripts\Enemy\ShootBehavior.cs" />
     <Compile Include="Assets\Scripts\EnemyNavSeek.cs" />
     <Compile Include="Assets\Scripts\EnemySpawner.cs" />
     <Compile Include="Assets\Scripts\FollowPlayer.cs" />
