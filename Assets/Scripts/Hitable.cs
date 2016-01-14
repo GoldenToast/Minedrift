@@ -56,6 +56,7 @@ public class Hitable : MonoBehaviour {
     {
         if (enemySpawn != null && !spawned) {
             var go = Instantiate(enemySpawn, pos, rotation);
+            spawned = true;
         }
     }
 

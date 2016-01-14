@@ -6,17 +6,19 @@ public class EnemySpawner : MonoBehaviour {
     public GameObject enemyPrefabs;
     public int enemyCount;
 
+    private int currentCount;
+    
     // Use this for initialization
     void Start () {
-        // enemyPrefabs = new List<GameObject>();
-        for (int i = 0; i < enemyCount; i++) {
-            spawnEnemy(enemyPrefabs, randPosition());
-        }
+        currentCount = 0;
     }
 	
 	// Update is called once per frame
 	void Update () {
-        
+         if (currentCount < enemyCount) {
+            spawnEnemy(enemyPrefabs, randPosition());
+            currentCount++;
+        } 
     }
 
     private void spawnEnemy(GameObject enemyPrefabs ,Vector3 position)

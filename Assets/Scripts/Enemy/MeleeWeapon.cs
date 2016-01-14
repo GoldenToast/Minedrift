@@ -18,7 +18,10 @@ public class MeleeWeapon : MonoBehaviour {
         if (other.tag.Equals(Tags.PLAYER))
         {
             Debug.Log("Damage " + other.gameObject);
-            other.gameObject.GetComponent<Hitable>().takeDamage(damage);
+            if(other.gameObject.GetComponent<Hitable>() != null)
+            {
+                other.gameObject.GetComponent<Hitable>().takeDamage(damage);
+            }
         }
         if (other.tag.Equals(this.tag))
         {
