@@ -75,11 +75,17 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Assets\Scripts\BulletMovement.cs" />
+    <Compile Include="Assets\Scripts\Camera\CameraControl.cs" />
     <Compile Include="Assets\Scripts\EnemyNavSeek.cs" />
     <Compile Include="Assets\Scripts\EnemySpawner.cs" />
     <Compile Include="Assets\Scripts\FollowPlayer.cs" />
+    <Compile Include="Assets\Scripts\Hitable.cs" />
+    <Compile Include="Assets\Scripts\Manager\GameManager.cs" />
+    <Compile Include="Assets\Scripts\Manager\PlayerManager.cs" />
     <Compile Include="Assets\Scripts\PlayerShipMovement.cs" />
     <Compile Include="Assets\Scripts\PlayerWeaponControl.cs" />
+    <Compile Include="Assets\Scripts\Tag.cs" />
+    <Compile Include="Assets\Scripts\Tags.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Assets\Standard Assets\CrossPlatformInput\CrossPlatformInputGuidelines.txt" />

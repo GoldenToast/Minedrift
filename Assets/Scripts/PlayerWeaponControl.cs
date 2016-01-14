@@ -5,7 +5,10 @@ public class PlayerWeaponControl : MonoBehaviour {
 
     private const string MOUNT1 = "Mount1";
     private const string MOUNT2 = "Mount2";
-    private const string FIRE = "Jump";
+    private const string FIRE1 = "Fire1";
+    private const string FIRE2 = "Fire2";
+
+    public int PlayerNumber;
 
     public GameObject bulletPrefab;
     public float lifetime ;
@@ -27,9 +30,22 @@ public class PlayerWeaponControl : MonoBehaviour {
 	// Update is called once per frame
 	void Update () {
         lastShot -= 1 * Time.deltaTime;
-        if (lastShot <= 0 && Input.GetButton(FIRE)){
-            fire(bulletPrefab);
+       
+        if (PlayerNumber == 1)
+        {
+            if (lastShot <= 0 && Input.GetButton(FIRE1))
+            {
+                fire(bulletPrefab);
+            }
         }
+        if (PlayerNumber == 2)
+        {
+            if (lastShot <= 0 && Input.GetButton(FIRE2))
+            {
+                fire(bulletPrefab);
+            }
+        }
+
     }
 
     void fire(GameObject bulletPrefab)
@@ -44,6 +60,7 @@ public class PlayerWeaponControl : MonoBehaviour {
         }
         lastShot = fireFrequency;
         GameObject bullet = GameObject.Instantiate(bulletPrefab, currentMount.position, currentMount.rotation) as GameObject;
+        bullet.tag = this.tag;
         Destroy(bullet, lifetime);
     }
 }
