@@ -75,6 +75,11 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Assets\Scripts\Camera\CameraControl.cs" />
+    <Compile Include="Assets\Scripts\Enemy\EnemyAttackBehavior.cs" />
+    <Compile Include="Assets\Scripts\Enemy\EnemyWanderBehavior.cs" />
+    <Compile Include="Assets\Scripts\Enemy\EnemyWeaponControl.cs" />
+    <Compile Include="Assets\Scripts\Enemy\MeleeWeapon.cs" />
+    <Compile Include="Assets\Scripts\Enemy\NavigationBehavior.cs" />
     <Compile Include="Assets\Scripts\EnemyNavSeek.cs" />
     <Compile Include="Assets\Scripts\EnemySpawner.cs" />
     <Compile Include="Assets\Scripts\FollowPlayer.cs" />
@@ -85,7 +90,8 @@
     <Compile Include="Assets\Scripts\Spaceship\EngineControls.cs" />
     <Compile Include="Assets\Scripts\Spaceship\PlayerShipMovement.cs" />
     <Compile Include="Assets\Scripts\Spaceship\PlayerWeaponControl.cs" />
-    <Compile Include="Assets\Scripts\Tag.cs" />
+    <Compile Include="Assets\Scripts\Tags.cs" />
+    <Compile Include="Assets\Scripts\UiDirectionControl.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Assets\Standard Assets\CrossPlatformInput\CrossPlatformInputGuidelines.txt" />

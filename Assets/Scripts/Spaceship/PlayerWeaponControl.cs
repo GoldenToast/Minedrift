@@ -30,7 +30,6 @@ public class PlayerWeaponControl : MonoBehaviour {
 	// Update is called once per frame
 	void Update () {
         lastShot -= 1 * Time.deltaTime;
-       
         if (PlayerNumber == 1)
         {
             if (lastShot <= 0 && Input.GetButton(FIRE1))

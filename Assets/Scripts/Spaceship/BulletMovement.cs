@@ -19,7 +19,7 @@ public class BulletMovement : MonoBehaviour {
     void OnTriggerEnter(Collider other)
     {
         Debug.Log("Laser enters " + other);
-        if (other.tag.Equals("Enemy"))
+        if (other.tag.Equals(Tags.ENEMY))
         {
             Debug.Log("Damage " + other.gameObject.layer);
             other.gameObject.GetComponent<Hitable>().takeDamage(damage);
