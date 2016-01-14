@@ -41,6 +41,7 @@ public class Hitable : MonoBehaviour {
         setUIHealth();
 		if (currentHealth <= 0) {
             DoExplosion(transform.position, transform.rotation);
+
 			Destroy (this.gameObject, .3f);
             //Respawn();
         }
@@ -53,6 +54,8 @@ public class Hitable : MonoBehaviour {
 	
 	void DoExplosion(Vector3 pos, Quaternion rotation){
         Debug.Log("Explode");
+        var go = Instantiate(explosionPrefab, pos, rotation);
+        Destroy(go, 5.0f);
         GetComponent<AudioSource>().Play(0);
 	}
 }
