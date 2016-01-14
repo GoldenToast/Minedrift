@@ -17,7 +17,8 @@ public class Hitable : MonoBehaviour {
 		health -= damage;
 		if (health <= 0) {
             DoExplosion(transform.position, transform.rotation);
-            Respawn();
+			Destroy (this.gameObject);
+            //Respawn();
         }
 	}
 
@@ -30,6 +31,6 @@ public class Hitable : MonoBehaviour {
         //GameObject explosion = Instantiate(explosionPrefab, pos, rotation) as GameObject;
         GetComponent<AudioSource>().Play(0);
 
-		//Destroy (explosion, SecondsUntilDestroy);
+		//Destroy (explosion, SecondsUntilDestroy);wd
 	}
 }
