@@ -88,6 +88,7 @@
     <Compile Include="Assets\Scripts\FollowPlayer.cs" />
     <Compile Include="Assets\Scripts\Hitable.cs" />
     <Compile Include="Assets\Scripts\IActor.cs" />
+    <Compile Include="Assets\Scripts\Manager\EnemyCounter.cs" />
     <Compile Include="Assets\Scripts\Manager\GameManager.cs" />
     <Compile Include="Assets\Scripts\Manager\PlayerManager.cs" />
     <Compile Include="Assets\Scripts\Shaker.cs" />

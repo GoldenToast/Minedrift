@@ -16,11 +16,13 @@ public class GameManager : MonoBehaviour
     private WaitForSeconds m_StartWait;     
     private WaitForSeconds m_EndWait;       
 	private PlayerManager m_RoundWinner;
-	private PlayerManager m_GameWinner;       
+	private PlayerManager m_GameWinner;
 
+    public EnemyCounter enemyCounter;
 
     private void Start()
     {
+        enemyCounter = GetComponent<EnemyCounter>();
         m_StartWait = new WaitForSeconds(m_StartDelay);
         m_EndWait = new WaitForSeconds(m_EndDelay);
 
@@ -78,16 +80,16 @@ public class GameManager : MonoBehaviour
 		DisablePlayerControl ();
 		m_CameraControl.SetStartPositionAndSize ();
 		m_RoundNumber++;
-		m_MessageText.text = "Round " + m_RoundNumber;
+		m_MessageText.text = "Minedrift";
         yield return m_StartWait;
     }
 
 
     private IEnumerator RoundPlaying()
     {
-		EnableTankControl ();
+		EnablePlayerControl ();
 		m_MessageText.text = "";
-		while (!OneLeft()) {
+		while (!nonLeft()) {
 			yield return null;
 		}
     }
@@ -108,15 +110,10 @@ public class GameManager : MonoBehaviour
     }
 
 
-    private bool OneLeft()
+    private bool nonLeft()
     {
-        int numLeft = 0;
-        for (int i = 0; i < m_Players.Length; i++)
-        {
-            if (m_Players[i].m_Instance.activeSelf)
-                numLeft++;
-        }
-        return numLeft <= 1;
+    
+        return enemyCounter.counter <= 0;
     }
 
 
@@ -174,7 +171,7 @@ public class GameManager : MonoBehaviour
     }
 
 
-    private void EnableTankControl()
+    private void EnablePlayerControl()
     {
         for (int i = 0; i < m_Players.Length; i++)
         {
