@@ -11,7 +11,7 @@ public abstract class EnemyAttackBehavior : NavigationBehavior {
 	void OnTriggerEnter (Collider other) {
 		if (other.tag.Equals ("Player")) {
 			player = player ?? other.transform;
-			MonoBehaviour wanderBehavior = GetComponent<EnemyWanderBehavior> ();
+			var wanderBehavior = GetComponent<EnemyWanderBehavior> ();
 			wanderBehavior.enabled = false;
 		}
 	}
@@ -19,7 +19,7 @@ public abstract class EnemyAttackBehavior : NavigationBehavior {
 	void OnTriggerExit (Collider other) {
 		if (other.tag.Equals ("Player")) {
 			player = null;
-			MonoBehaviour wanderBehavior = GetComponent<EnemyWanderBehavior> ();
+			var wanderBehavior = GetComponent<EnemyWanderBehavior> ();
 			wanderBehavior.enabled = true;
 		}
 	}
