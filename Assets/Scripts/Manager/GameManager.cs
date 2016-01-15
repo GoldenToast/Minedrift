@@ -1,10 +1,11 @@
 ﻿using UnityEngine;
 using System.Collections;
 using UnityEngine.UI;
+using UnityEngine.SceneManagement;
 
 public class GameManager : MonoBehaviour
 {
-    public int m_NumRoundsToWin = 5;        
+       
     public float m_StartDelay = 3f;         
     public float m_EndDelay = 3f;           
     public CameraControl m_CameraControl;   
@@ -62,15 +63,7 @@ public class GameManager : MonoBehaviour
         yield return StartCoroutine(RoundStarting());
         yield return StartCoroutine(RoundPlaying());
         yield return StartCoroutine(RoundEnding());
-
-       if (m_GameWinner != null)
-        {
-            Application.LoadLevel(Application.loadedLevel);
-        }
-        else
-        {
-            StartCoroutine(GameLoop());
-        }
+        SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
     }
 
 
@@ -88,22 +81,27 @@ public class GameManager : MonoBehaviour
     private IEnumerator RoundPlaying()
     {
 		EnablePlayerControl ();
-		m_MessageText.text = "";
-		while (!nonLeft()) {
+		m_MessageText.text = "";       
+        while (!nonLeft() && !allPlayerDead()) {
 			yield return null;
 		}
     }
 
+    private bool allPlayerDead() {
+        bool playersDead = true;
+        for (int i = 0; i < m_Players.Length; i++)
+        {
+            if (!m_Players[i].isDead())
+            {
+                playersDead = false;
+            }
+        }
+        return playersDead;
+    }
 
     private IEnumerator RoundEnding()
     {
 		DisablePlayerControl ();
-		m_RoundWinner = null;
-		m_RoundWinner = GetRoundWinner();
-		if (m_RoundWinner != null) {
-			m_RoundWinner.m_Wins++;
-		}
-		m_GameWinner = GetGameWinner ();
 		string endmessage = EndMessage ();
 		m_MessageText.text = endmessage;
         yield return m_EndWait;
@@ -112,51 +110,17 @@ public class GameManager : MonoBehaviour
 
     private bool nonLeft()
     {
-    
         return enemyCounter.counter <= 0;
-    }
-
-
-    private PlayerManager GetRoundWinner()
-    {
-        for (int i = 0; i < m_Players.Length; i++)
-        {
-            if (m_Players[i].m_Instance.activeSelf)
-                return m_Players[i];
-        }
-
-        return null;
-    }
-
-
-	private PlayerManager GetGameWinner()
-    {
-        for (int i = 0; i < m_Players.Length; i++)
-        {
-            if (m_Players[i].m_Wins == m_NumRoundsToWin)
-                return m_Players[i];
-        }
-
-        return null;
     }
 
 
     private string EndMessage()
     {
-        string message = "DRAW!";
-
-        if (m_RoundWinner != null)
-            message = m_RoundWinner.m_ColoredPlayerText + " WINS THE ROUND!";
-
-        message += "\n\n\n\n";
-
-        for (int i = 0; i < m_Players.Length; i++)
+        string message = "You Win";
+        if (!nonLeft())
         {
-            message += m_Players[i].m_ColoredPlayerText + ": " + m_Players[i].m_Wins + " WINS\n";
-        }
-
-        if (m_GameWinner != null)
-            message = m_GameWinner.m_ColoredPlayerText + " WINS THE GAME!";
+            message = "Game Over";
+        }       
 
         return message;
     }
