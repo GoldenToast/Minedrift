@@ -3,10 +3,9 @@ using System.Collections;
 
 public class ShootBehavior : EnemyAttackBehavior {
 
-	private int round = 0;
-	private bool fightMode = false;
+	private const int TOLERANCE = 40;
 
-	private float normalSpeed, normalAcceleration;
+	private float normalSpeed;
 
 	public bool IsPlayerInRange { get; set; }
 
@@ -18,9 +17,8 @@ public class ShootBehavior : EnemyAttackBehavior {
 
 	private void ResetFightMode () {
 		round = 0;
-		fightMode = false;
+		rage = false;
 		base.Speed = normalSpeed;
-		base.Acceleration = normalAcceleration;
 	}
 
 	public override Vector3 GetNavigationPosition () {
@@ -31,19 +29,19 @@ public class ShootBehavior : EnemyAttackBehavior {
 		}
 		RotateShipToPlayer ();
 
-		if (Vector3.Distance (base.transform.position, player.position) < 10) {
+		if (Vector3.Distance (base.transform.position, player.position) < 15) {
 			IsPlayerInRange = true;
-			if (++round == 40) {
-				base.Acceleration = base.Acceleration * 2;
-				base.Speed = Speed * 2.0f;
+			if (++round == TOLERANCE) {
+				base.Acceleration *= 2.0f;
+				base.Speed *= 2.0f;
 			}
-			if (round % 80 < 40) {
-				fightMode = false;
+			if (round % 80 < TOLERANCE) {
+				rage = false;
 			} else {
-				fightMode = true;
+				rage = true;
 			}
 
-			if (!fightMode) {
+			if (!rage) {
 				return destination = Vector3.Lerp (base.transform.position, base.transform.position * 1.1f, Time.deltaTime);
 			} else {				
 				Vector3 delta = (player.position - this.transform.position);
@@ -58,6 +56,8 @@ public class ShootBehavior : EnemyAttackBehavior {
 		normalSpeed = base.Speed;
 		normalAcceleration = base.Acceleration;
 		base.Start ();
+		var wanderBehavior = GetComponent<EnemyWanderBehavior> ();
+		wanderBehavior.enabled = false;
 	}
 
 	// Update is called once per frame

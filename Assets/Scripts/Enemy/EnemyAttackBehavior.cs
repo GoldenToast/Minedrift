@@ -8,6 +8,11 @@ public abstract class EnemyAttackBehavior : NavigationBehavior {
 	public float Speed;
 	public float Acceleration;
 
+	protected int round = 0;
+	protected bool rage = false;
+
+	protected float normalAcceleration;
+
 	void OnTriggerEnter (Collider other) {
 		if (other.tag.Equals ("Player")) {
 			player = player ?? other.transform;
@@ -21,6 +26,9 @@ public abstract class EnemyAttackBehavior : NavigationBehavior {
 			player = null;
 			var wanderBehavior = GetComponent<EnemyWanderBehavior> ();
 			wanderBehavior.enabled = true;
+			round = 0;
+			normalAcceleration = Acceleration;
+			rage = false;
 		}
 	}
 		
