@@ -14,7 +14,6 @@ public class PlayerManager
 
     private PlayerShipMovement m_Movement;       
     private PlayerWeaponControl m_Shooting;
-    private GameObject m_CanvasGameObject;
 
 
     public void Setup()
@@ -28,11 +27,16 @@ public class PlayerManager
 
     }
 
+    public bool isDead() {
+        return m_Instance == null;
+    }
 
     public void DisableControl()
     {
-        m_Movement.enabled = false;
-        m_Shooting.enabled = false;
+        if (m_Movement != null) {
+            m_Movement.enabled = false;
+            m_Shooting.enabled = false;
+        }
 
        // m_CanvasGameObject.SetActive(false);
     }
@@ -40,8 +44,11 @@ public class PlayerManager
 
     public void EnableControl()
     {
-        m_Movement.enabled = true;
-        m_Shooting.enabled = true;
+        if (m_Movement != null)
+        {
+            m_Movement.enabled = true;
+            m_Shooting.enabled = true;
+        }
 
        // m_CanvasGameObject.SetActive(true);
     }
