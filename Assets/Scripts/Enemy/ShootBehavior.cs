@@ -29,7 +29,7 @@ public class ShootBehavior : EnemyAttackBehavior {
 		}
 		RotateShipToPlayer ();
 
-		if (Vector3.Distance (base.transform.position, player.position) < 15) {
+		if (Vector3.Distance (base.transform.position, player.position) < 20) {
 			IsPlayerInRange = true;
 			if (++round == TOLERANCE) {
 				base.Acceleration *= 2.0f;
