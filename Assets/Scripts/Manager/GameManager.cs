@@ -19,7 +19,7 @@ public class GameManager : MonoBehaviour
 	private PlayerManager m_RoundWinner;
 	private PlayerManager m_GameWinner;
 
-    public EnemyCounter enemyCounter;
+	private EnemyCounter enemyCounter;
 
     private void Start()
     {

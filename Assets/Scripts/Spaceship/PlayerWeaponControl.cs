@@ -59,7 +59,7 @@ public class PlayerWeaponControl : MonoBehaviour {
         }
         lastShot = fireFrequency;
         GameObject bullet = GameObject.Instantiate(bulletPrefab, currentMount.position, currentMount.rotation) as GameObject;
-        bullet.tag = this.tag;
+		bullet.tag = this.tag;
         Destroy(bullet, lifetime);
     }
 }

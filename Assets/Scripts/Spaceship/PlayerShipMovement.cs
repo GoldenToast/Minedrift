@@ -33,6 +33,7 @@ public class PlayerShipMovement : MonoBehaviour {
         psEngine1 = this.transform.Find(ENGINE1).GetComponent<ParticleSystem>();
         psEngine2 = this.transform.Find(ENGINE2).GetComponent<ParticleSystem>();
         startSpeedMax = psEngine1.startSpeed;
+		this.tag = this.tag + PlayerNumber;
     }
 	
 	// Update is called once per frame

@@ -18,7 +18,6 @@ public class EngineControls : MonoBehaviour {
         power = Mathf.Clamp01(power);
         float speed = startSpeedMax * power;
 		ps.startSpeed = speed;
-   
     }
 
 

@@ -12,10 +12,11 @@ public class MeleeWeapon : MonoBehaviour {
         this.transform.rotation *= Quaternion.Euler(new Vector3(0, 5, 0));
     }
 
+
+
     void OnTriggerEnter(Collider other)
     {
-        Debug.Log("Laser enters " + other);
-        if (other.tag.Equals(Tags.PLAYER))
+		if (other.tag.Equals(Tags.PLAYER1) || other.tag.Equals(Tags.PLAYER2))
         {
             Debug.Log("Damage " + other.gameObject);
             if(other.gameObject.GetComponent<Hitable>() != null)

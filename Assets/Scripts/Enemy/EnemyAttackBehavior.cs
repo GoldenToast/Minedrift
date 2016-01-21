@@ -14,7 +14,7 @@ public abstract class EnemyAttackBehavior : NavigationBehavior {
 	protected float normalAcceleration;
 
 	void OnTriggerEnter (Collider other) {
-		if (other.tag.Equals ("Player")) {
+		if (other.tag.Equals (Tags.PLAYER1) || other.tag.Equals (Tags.PLAYER2)) {
 			player = player ?? other.transform;
 			var wanderBehavior = GetComponent<EnemyWanderBehavior> ();
 			wanderBehavior.enabled = false;
@@ -22,7 +22,7 @@ public abstract class EnemyAttackBehavior : NavigationBehavior {
 	}
 
 	void OnTriggerExit (Collider other) {
-		if (other.tag.Equals ("Player")) {
+		if (other.tag.Equals (Tags.PLAYER1) || other.tag.Equals (Tags.PLAYER2)) {
 			player = null;
 			var wanderBehavior = GetComponent<EnemyWanderBehavior> ();
 			wanderBehavior.enabled = true;
