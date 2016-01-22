@@ -1,5 +1,5 @@
 ﻿using UnityEngine;
-using System.Collections;
+using System.Collections.Generic;
 using System;
 
 public class PlayerShipMovement : MonoBehaviour {
@@ -10,19 +10,15 @@ public class PlayerShipMovement : MonoBehaviour {
     private const string HORIZONTAL2 = "Horizontal2";
     private const string VERTICAL2 = "Vertical2";
 
-    private const string ENGINE1 = "Engine1";
-    private const string ENGINE2 = "Engine2";
-
     public int PlayerNumber;
 
     public float forwardSpeed;
 	public float rotationSpeed;
     public Vector2 moveDirection;
+	public List<ParticleSystem> psEngines;
 
     private Rigidbody rb;
 
-    private ParticleSystem psEngine1;
-    private ParticleSystem psEngine2;
 
     private float power = 0;
     private float startSpeedMax;
@@ -30,9 +26,9 @@ public class PlayerShipMovement : MonoBehaviour {
     // Use this for initialization
     void Start () {
         rb = GetComponent<Rigidbody>();
-        psEngine1 = this.transform.Find(ENGINE1).GetComponent<ParticleSystem>();
-        psEngine2 = this.transform.Find(ENGINE2).GetComponent<ParticleSystem>();
-        startSpeedMax = psEngine1.startSpeed;
+		foreach (ParticleSystem ps in psEngines) {
+			startSpeedMax = ps.startSpeed;
+		}
 		this.tag = this.tag + PlayerNumber;
     }
 	
@@ -51,9 +47,9 @@ public class PlayerShipMovement : MonoBehaviour {
         }
         moveDirection = new Vector2(x,y);
 
-    
-        adjustEnginePower(psEngine1,y);
-        adjustEnginePower(psEngine2, y);
+		foreach (ParticleSystem ps in psEngines) {
+			adjustEnginePower(ps,y);
+		}
     }
 
     private void adjustEnginePower(ParticleSystem ps,  float y)    {
