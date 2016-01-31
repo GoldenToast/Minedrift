@@ -10,13 +10,13 @@ public class Spawner : MonoBehaviour {
 	public bool autoDestroy;
 	public float destroyTime;
 
-	public bool random;
+	public bool randomSpawn;
 	[Range(1,9999)]
 	public float spawnRadius;
 
 	public void Spawn(Vector3 pos, Quaternion rotation){
 		for (int i = 0; i < count; i++) {
-			if (random) {
+			if (randomSpawn) {
 				pos = randPosition (pos);
 			}
 			var go = Instantiate(objectPrefab, pos, rotation);
