@@ -1,6 +1,7 @@
 ﻿using UnityEngine;
 using System.Collections;
 
+[RequireComponent (typeof (ParticleSystem))]
 public class EngineControls : MonoBehaviour {
 
     private float power = 0;

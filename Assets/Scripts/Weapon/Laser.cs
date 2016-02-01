@@ -1,10 +1,13 @@
 ﻿using UnityEngine;
 using System.Collections;
 
-public class BulletMovement : MonoBehaviour {
+[RequireComponent (typeof (Rigidbody))]
+public class Laser : MonoBehaviour {
 
-    public float bulletSpeed;
+	public float bulletSpeed;
     public int damage;
+	public float lifetime ;
+	public float fireFrequency;
 
 	private Rigidbody rb;
     

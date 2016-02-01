@@ -3,7 +3,6 @@ using UnityEngine;
 using System.Collections;
 
 [RequireComponent (typeof(LineRenderer))]
-
 public class LaserBeam : MonoBehaviour {
 
 	public float laserWidth = 1.0f;
@@ -30,8 +29,9 @@ public class LaserBeam : MonoBehaviour {
 		myTransform = transform;
 		offset = new Vector3(0,0,0);
 		endEffect = GetComponentInChildren<ParticleSystem>();
-		if(endEffect)
+		if (endEffect) {
 			endEffectTransform = endEffect.transform;
+		}
 	}
 
 	// Update is called once per frame
@@ -40,7 +40,6 @@ public class LaserBeam : MonoBehaviour {
 	}
 
 	void RenderLaser(){
-
 		//Shoot our laserbeam forwards!
 		UpdateLength();
 

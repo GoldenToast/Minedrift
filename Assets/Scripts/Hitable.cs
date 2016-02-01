@@ -2,6 +2,8 @@
 using UnityEngine.UI;
 using System.Collections;
 
+[RequireComponent (typeof (Spawner))]
+[RequireComponent (typeof (Shaker))]
 public class Hitable : MonoBehaviour {
 
     public Slider slider;
@@ -24,13 +26,10 @@ public class Hitable : MonoBehaviour {
         spawnPosition = transform.position;
         currentHealth = health;
     }
-
- 
-
+		
 	public void takeDamage(int damage){
 
-        if(shaker != null)
-        {
+        if(shaker != null){
             shaker.doShake();
         }
 

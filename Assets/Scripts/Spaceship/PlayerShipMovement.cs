@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System;
 
+[RequireComponent(typeof(Rigidbody))]
 public class PlayerShipMovement : MonoBehaviour {
 
     private const string HORIZONTAL1 = "Horizontal1";
@@ -10,7 +11,7 @@ public class PlayerShipMovement : MonoBehaviour {
     private const string HORIZONTAL2 = "Horizontal2";
     private const string VERTICAL2 = "Vertical2";
 
-    public int PlayerNumber;
+    public int playerNumber;
 
     public float forwardSpeed;
 	public float rotationSpeed;
@@ -35,15 +36,15 @@ public class PlayerShipMovement : MonoBehaviour {
 		foreach (ParticleSystem ps in psEngines) {
 			startSpeedMax = ps.startSpeed;
 		}
-		this.tag = this.tag + PlayerNumber;
+		this.tag = this.tag + playerNumber;
     }
 	
 	// Update is called once per frame
 	void Update () {
-		if (PlayerNumber == 1) {
+		if (playerNumber == 1) {
 			handleInput(HORIZONTAL1, VERTICAL1);
 		}
-		if (PlayerNumber == 2) {
+		if (playerNumber == 2) {
 			handleInput(HORIZONTAL2, VERTICAL2);
 		}
 

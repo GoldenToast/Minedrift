@@ -8,11 +8,10 @@ public class PlayerWeaponControl : MonoBehaviour {
     private const string FIRE1 = "Fire1";
     private const string FIRE2 = "Fire2";
 
-    public int PlayerNumber;
+    public int playerNumber;
 
-    public GameObject bulletPrefab;
-    public float lifetime ;
-    public float fireFrequency;
+    public GameObject weaponPrefab;
+
 
     private Transform mount1;
     private Transform mount2;
@@ -30,25 +29,27 @@ public class PlayerWeaponControl : MonoBehaviour {
 	// Update is called once per frame
 	void Update () {
         lastShot -= 1 * Time.deltaTime;
-        if (PlayerNumber == 1)
+        if (playerNumber == 1)
         {
             if (lastShot <= 0 && Input.GetButton(FIRE1))
             {
-                fire(bulletPrefab);
+                fire(weaponPrefab);
             }
         }
-        if (PlayerNumber == 2)
+        if (playerNumber == 2)
         {
             if (lastShot <= 0 && Input.GetButton(FIRE2))
             {
-                fire(bulletPrefab);
+                fire(weaponPrefab);
             }
         }
 
     }
 
-    void fire(GameObject bulletPrefab)
-    {
+	void fire(GameObject weaponPrefab)    {
+		if (weaponPrefab == null) {
+			return;
+		}
         if (currentMount.Equals(mount1))
         {
             currentMount = mount2;
@@ -58,8 +59,8 @@ public class PlayerWeaponControl : MonoBehaviour {
             currentMount = mount1;
         }
         lastShot = fireFrequency;
-        GameObject bullet = GameObject.Instantiate(bulletPrefab, currentMount.position, currentMount.rotation) as GameObject;
-		bullet.tag = this.tag;
-        Destroy(bullet, lifetime);
+		GameObject weapon = GameObject.Instantiate(weaponPrefab, currentMount.position, currentMount.rotation) as GameObject;
+		weapon.tag = this.tag;
+        Destroy(weapon, lifetime);
     }
 }
