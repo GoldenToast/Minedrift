@@ -11,7 +11,8 @@ public class PlayerWeaponControl : MonoBehaviour {
     public int playerNumber;
 
     public GameObject weaponPrefab;
-
+	public float lifetime ;
+	public float fireFrequency;
 
     private Transform mount1;
     private Transform mount2;
@@ -58,7 +59,7 @@ public class PlayerWeaponControl : MonoBehaviour {
         {
             currentMount = mount1;
         }
-        lastShot = fireFrequency;
+		lastShot = fireFrequency;
 		GameObject weapon = GameObject.Instantiate(weaponPrefab, currentMount.position, currentMount.rotation) as GameObject;
 		weapon.tag = this.tag;
         Destroy(weapon, lifetime);

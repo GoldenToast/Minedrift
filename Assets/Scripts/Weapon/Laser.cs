@@ -6,8 +6,7 @@ public class Laser : MonoBehaviour {
 
 	public float bulletSpeed;
     public int damage;
-	public float lifetime ;
-	public float fireFrequency;
+
 
 	private Rigidbody rb;
     
