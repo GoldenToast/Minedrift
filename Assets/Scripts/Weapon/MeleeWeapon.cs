@@ -1,33 +1,34 @@
 ﻿using UnityEngine;
 using System.Collections;
 
-public class MeleeWeapon : MonoBehaviour {
+namespace Weapon{
+	public class MeleeWeapon : AbstractWeapon {
 
+		public override void Fire(GameObject origin){
+			
+		}
 
-    public int damage;
+		// Update is called once per frame
+		void Update()
+		{
+		    this.transform.rotation *= Quaternion.Euler(new Vector3(0, 5, 0));
+		}
 
-    // Update is called once per frame
-    void Update()
-    {
-        this.transform.rotation *= Quaternion.Euler(new Vector3(0, 5, 0));
-    }
+		void OnTriggerEnter(Collider other)
+		{
+			if (other.tag.Equals(Tags.PLAYER1) || other.tag.Equals(Tags.PLAYER2))
+		    {
+		        Debug.Log("Damage " + other.gameObject);
+		        if(other.gameObject.GetComponent<Hitable>() != null)
+		        {
+		            other.gameObject.GetComponent<Hitable>().takeDamage(damage);
+		        }
+		    }
+		    if (other.tag.Equals(this.tag))
+		    {
+		        Debug.Log("NoDamage to " + other);
+		    }
 
-
-
-    void OnTriggerEnter(Collider other)
-    {
-		if (other.tag.Equals(Tags.PLAYER1) || other.tag.Equals(Tags.PLAYER2))
-        {
-            Debug.Log("Damage " + other.gameObject);
-            if(other.gameObject.GetComponent<Hitable>() != null)
-            {
-                other.gameObject.GetComponent<Hitable>().takeDamage(damage);
-            }
-        }
-        if (other.tag.Equals(this.tag))
-        {
-            Debug.Log("NoDamage to " + other);
-        }
-
-    }
+		}
+	}
 }
