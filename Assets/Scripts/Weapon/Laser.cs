@@ -27,6 +27,10 @@ public class Laser : AbstractWeapon{
 		}
 
 		void OnTriggerEnter(Collider other) {
+            if (other.tag.Equals(Tags.UNTAGGED)) {
+                return;
+            }
+
 		    if (!other.tag.Equals(this.tag))
 		    { 
 				if (other.gameObject.GetComponent<Hitable>() != null)

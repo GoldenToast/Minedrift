@@ -16,4 +16,6 @@ public static class Tags {
     public const string LASER = "Laser";
 
     public const string RADAR = "Radar";
+
+    public const string UNTAGGED = "Untagged";
 }
