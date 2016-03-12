@@ -13,12 +13,19 @@ public abstract class EnemyAttackBehavior : NavigationBehavior {
 
 	protected float normalAcceleration;
 
+    public bool IsPlayerInRange { get; set; }
+
 	void OnTriggerEnter (Collider other) {
 		if (other.tag.Equals (Tags.PLAYER1) || other.tag.Equals (Tags.PLAYER2)) {
 			player = player ?? other.transform;
 			var wanderBehavior = GetComponent<EnemyWanderBehavior> ();
 			wanderBehavior.enabled = false;
-		}
+
+            var attackBehavoir = GetComponent<EnemyAttackBehavior>();
+            attackBehavoir.enabled = true;
+        } else if (other.tag.Equals(Tags.COLLECTABLE)) {
+            Debug.Log("LI LA LASER");
+        }
 	}
 
 	void OnTriggerExit (Collider other) {
@@ -26,6 +33,10 @@ public abstract class EnemyAttackBehavior : NavigationBehavior {
 			player = null;
 			var wanderBehavior = GetComponent<EnemyWanderBehavior> ();
 			wanderBehavior.enabled = true;
+
+            var attackBehavoir = GetComponent<EnemyAttackBehavior>();
+            attackBehavoir.enabled = false;
+
 			round = 0;
 			normalAcceleration = Acceleration;
 			rage = false;

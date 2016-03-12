@@ -15,20 +15,18 @@ public class EnemyProjectileControl : MonoBehaviour {
     private Transform currentMount;
    
     private float lastShot;
-    private ShootBehavior shootBehavior;
 
     // Use this for initialization
     void Start () {
         this.mount1 = transform.FindChild(MOUNT1);
         this.mount2 = transform.FindChild(MOUNT2);
         currentMount = mount1;
-        shootBehavior = GetComponent<ShootBehavior>();
     }
 	
 	// Update is called once per frame
 	void Update () {
         lastShot -= 1 * Time.deltaTime;
-        if (lastShot <= 0 && shootBehavior.IsPlayerInRange)
+        if (lastShot <= 0)
         {
             fire(weaponPrefab);
         }

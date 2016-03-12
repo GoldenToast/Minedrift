@@ -7,8 +7,6 @@ public class ShootBehavior : EnemyAttackBehavior {
 
 	private float normalSpeed;
 
-	public bool IsPlayerInRange { get; set; }
-
 	private void RotateShipToPlayer () {
 		var target = player.transform.position;
 		var targetRotation = Quaternion.LookRotation (target - base.transform.position, Vector3.up);
@@ -22,6 +20,7 @@ public class ShootBehavior : EnemyAttackBehavior {
 	}
 
 	public override Vector3 GetNavigationPosition () {
+        
 		if (player == null) {
 			ResetFightMode ();
 			IsPlayerInRange = false;

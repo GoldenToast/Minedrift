@@ -21,15 +21,16 @@ public class Laser : MonoBehaviour {
 	}
 
 	void OnTriggerEnter(Collider other) {
-        if (!other.tag.Equals(this.tag))
-        { 
+        if (other.tag.Equals(Tags.RADAR)) {
+            return;
+        }
+
+        if (!other.tag.Equals(this.tag)) {
 			if (other.gameObject.GetComponent<Hitable>() != null)
 			{
-				Debug.Log("Damage " + other.gameObject);
 				other.gameObject.GetComponent<Hitable>().takeDamage(damage);
 			}
 			Destroy(this.gameObject);
-        }
-       
+        }  
     }
 }

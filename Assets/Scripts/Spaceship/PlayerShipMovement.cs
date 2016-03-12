@@ -36,7 +36,7 @@ public class PlayerShipMovement : MonoBehaviour {
 		foreach (ParticleSystem ps in psEngines) {
 			startSpeedMax = ps.startSpeed;
 		}
-		this.tag = this.tag + playerNumber;
+		this.tag = this.tag/* + playerNumber*/;
     }
 	
 	// Update is called once per frame
