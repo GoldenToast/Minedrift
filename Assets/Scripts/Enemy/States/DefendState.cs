@@ -20,7 +20,7 @@ public abstract class DefendState : NavigationState {
     }
 
     public override void OnTriggerEnter(Collider other) {
-        if (other.tag.Equals(Tags.COLLECTABLE)) {
+        if (other.tag.Equals(Tags.LASER)) {
             timerLeft = timerMaximum;
         } else if (other.tag.Equals(Tags.PLAYER)) {
             controller.SwitchBehavior(Behavior.Attack, other);
