@@ -1,5 +1,6 @@
 ﻿using UnityEngine;
 using System.Collections;
+using Weapon;
 
 public class EnemyProjectileControl : MonoBehaviour {
 
@@ -33,19 +34,22 @@ public class EnemyProjectileControl : MonoBehaviour {
     }
 
   
-    void fire(GameObject bulletPrefab)
-    {
-        if (currentMount.Equals(mount1))
-        {
-            currentMount = mount2;
-        }
-        else
-        {
-            currentMount = mount1;
-        }
-        lastShot = fireFrequency;
-        GameObject bullet = GameObject.Instantiate(bulletPrefab, currentMount.position, currentMount.rotation) as GameObject;
-        bullet.tag = this.tag;
-        Destroy(bullet, lifetime);
-    }
+	void fire(GameObject weaponPrefab)    {
+		if (weaponPrefab == null) {
+			return;
+		}
+		if (currentMount.Equals(mount1))
+		{
+			currentMount = mount2;
+		}
+		else
+		{
+			currentMount = mount1;
+		}
+		GameObject weaponObj = GameObject.Instantiate(weaponPrefab, currentMount.position, currentMount.rotation) as GameObject;
+		weaponObj.tag = this.tag;
+		AbstractWeapon weapon = weaponObj.GetComponent<AbstractWeapon>();
+		lastShot = weapon.fireFrequency;
+		weapon.Fire (this.gameObject);
+	}
 }

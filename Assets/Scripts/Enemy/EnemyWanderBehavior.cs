@@ -19,12 +19,12 @@ public class EnemyWanderBehavior : NavigationBehavior {
 		return IsApplicable () ? destination = randPosition (this.transform.position) : destination;
 	}
 
-//	void OnDrawGizmos () {
-//		if (destination != null) {
-//			Gizmos.color = Color.yellow;
-//			Gizmos.DrawSphere (destination, .25f);
-//		}
-//	}
+	void OnDrawGizmos () {
+		if (destination != null) {
+			Gizmos.color = Color.yellow;
+			Gizmos.DrawSphere (destination, .25f);
+		}
+	}
 
 	// Use this for initialization
 	new void Start () {

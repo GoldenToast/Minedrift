@@ -4,7 +4,7 @@ using System;
 
 public class ShooterController : BehaviorController {
 
-    public new void Start() {
+    public void Start() {
         base.current = behaviors[Behavior.Wander];
     }
 
