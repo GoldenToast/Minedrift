@@ -34,6 +34,12 @@ public abstract class NavigationState : IEnemyState {
 
     public virtual void Update() {
         //SetSpeedAndAcceleration();
-        agent.SetDestination(GetNavigationPosition());
+        Vector3 d = GetNavigationPosition();
+        Debug.Log(d);
+        agent.SetDestination(d);
+
+        //agent.SetDestination(GetNavigationPosition());
+
+        
     }
 }

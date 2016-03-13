@@ -14,7 +14,9 @@ public abstract class AttackState : NavigationState {
     protected AttackState(BehaviorController controller)
         : base(controller) {
         transform = controller.transform;
+
         projectileControl = controller.GetComponent<EnemyProjectileControl>();
+        projectileControl.enabled = false;
     }
 
     public override void OnTriggerEnter(Collider other) {
