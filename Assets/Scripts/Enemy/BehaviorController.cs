@@ -13,7 +13,8 @@ public abstract class BehaviorController : MonoBehaviour {
     protected readonly IDictionary<Behavior, IEnemyState> behaviors 
         = new Dictionary<Behavior, IEnemyState>();
 
-    new void Update() {
+    void Update() {
+		Debug.Log (this.name + " state " + current);
         current.Update();
     }
 
