@@ -33,13 +33,6 @@ public abstract class NavigationState : IEnemyState {
     public abstract void OnTriggerExit(Collider other);
 
     public virtual void Update() {
-        //SetSpeedAndAcceleration();
-        Vector3 d = GetNavigationPosition();
-        Debug.Log(d);
-        agent.SetDestination(d);
-
-        //agent.SetDestination(GetNavigationPosition());
-
-        
+        agent.SetDestination(GetNavigationPosition());     
     }
 }

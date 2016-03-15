@@ -27,7 +27,7 @@ public class Laser : AbstractWeapon{
 		}
 
 		void OnTriggerEnter(Collider other) {
-            if (other.tag.Equals(Tags.UNTAGGED)) {
+            if (other.tag.Equals(Tags.RADAR)) {
                 return;
             }
 

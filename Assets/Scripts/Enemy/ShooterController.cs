@@ -1,7 +1,9 @@
 ﻿using UnityEngine;
 using System.Collections;
-using System;
 
+/// <summary>
+/// Controller for the shooter enemys.
+/// </summary>
 public class ShooterController : BehaviorController {
 
     public void Start() {
