@@ -26,6 +26,10 @@ public abstract class BehaviorController : MonoBehaviour {
         current.OnTriggerExit(other);
     }
 
+	void OnTriggerStay(Collider other) {
+		current.OnTriggerStay (other);
+	}
+
     public abstract void Awake();
 
     public virtual void SwitchBehavior(Behavior behavior) {

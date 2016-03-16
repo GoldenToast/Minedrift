@@ -30,4 +30,7 @@ public abstract class DefendState : NavigationState {
     public override void OnTriggerExit(Collider other) {
         // Nuthin
     }
+
+	public override void OnTriggerStay (Collider other) {
+	}
 }

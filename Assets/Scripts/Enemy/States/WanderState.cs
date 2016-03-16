@@ -36,4 +36,7 @@ public class WanderState : NavigationState {
         NavMesh.SamplePosition(currentPosition + new Vector3(direction.x, 0.0f, direction.z), out hit, 20.0f, 1);
         return hit.position;
     }
+
+	public override void OnTriggerStay (Collider other) {
+	}
 }

@@ -14,4 +14,10 @@ public class ShooterController : BehaviorController {
         behaviors.Add(Behavior.Wander, new WanderState(this));
         behaviors.Add(Behavior.Attack, new ShootState(this));
     }
+
+	void OnDrawGizmos(){
+		NavMeshAgent agent = GetComponent<NavMeshAgent>();
+		Gizmos.color = Color.yellow;
+		Gizmos.DrawSphere(agent.destination, 1);
+	}
 }
