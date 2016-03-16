@@ -10,4 +10,6 @@ public interface IEnemyState {
 	void OnTriggerStay (Collider other);
 
     void Update();
+
+    void Start();
 }

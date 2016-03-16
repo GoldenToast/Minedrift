@@ -18,10 +18,6 @@ public class WanderState : NavigationState {
         }
     }
 
-    public override void OnTriggerExit(Collider other) {
-        //Nuthin
-    }
-
     protected override Vector3 GetNavigationPosition() {
         return IsApplicable() ? destination = randPosition(this.transform.position) : destination;
     }
@@ -37,6 +33,14 @@ public class WanderState : NavigationState {
         return hit.position;
     }
 
+    public override void Start() {
+        destination = randPosition(this.transform.position);
+    }
+
 	public override void OnTriggerStay (Collider other) {
 	}
+
+    public override void OnTriggerExit(Collider other) {
+        //Nuthin
+    }
 }

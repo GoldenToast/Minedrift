@@ -22,15 +22,16 @@ public abstract class AttackState : NavigationState {
         projectileControl.enabled = false;
     }
 
-	public override void Update ()
-	{
-		if (--seen < 0) {
-			controller.SwitchBehavior(Behavior.Wander);
-			player = null;
-			rage = false;
-			projectileControl.enabled = false;
-			controller.SwitchBehavior(Behavior.Wander);
-		}	
+	public override void Update () {
+        if (--seen < 0) {
+            controller.SwitchBehavior(Behavior.Wander);
+            player = null;
+            rage = false;
+            projectileControl.enabled = false;
+            controller.SwitchBehavior(Behavior.Wander);
+        } else {
+            base.Update();
+        }
 	}
 
     public override void OnTriggerEnter(Collider other) {

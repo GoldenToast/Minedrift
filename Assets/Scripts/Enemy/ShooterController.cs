@@ -8,6 +8,7 @@ public class ShooterController : BehaviorController {
 
     public void Start() {
         base.current = behaviors[Behavior.Wander];
+        base.current.Start();
     }
 
     public override void Awake() {
