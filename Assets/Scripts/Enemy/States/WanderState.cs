@@ -37,9 +37,6 @@ public class WanderState : NavigationState {
         destination = randPosition(this.transform.position);
     }
 
-	public override void OnTriggerStay (Collider other) {
-	}
-
     public override void OnTriggerExit(Collider other) {
         //Nuthin
     }

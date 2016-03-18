@@ -7,7 +7,7 @@ public interface IEnemyState {
 
     void OnTriggerExit(Collider other);
 
-	void OnTriggerStay (Collider other);
+    //void OnTriggerStay (Collider other); 
 
     void Update();
 

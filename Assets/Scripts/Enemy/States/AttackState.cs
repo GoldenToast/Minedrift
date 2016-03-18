@@ -22,18 +22,6 @@ public abstract class AttackState : NavigationState {
         projectileControl.enabled = false;
     }
 
-	public override void Update () {
-        if (--seen < 0) {
-            controller.SwitchBehavior(Behavior.Wander);
-            player = null;
-            rage = false;
-            projectileControl.enabled = false;
-            controller.SwitchBehavior(Behavior.Wander);
-        } else {
-            base.Update();
-        }
-	}
-
     public override void OnTriggerEnter(Collider other) {
         if (other.tag.Contains(Tags.PLAYER)) {
             player = player ?? other.transform;
@@ -41,13 +29,30 @@ public abstract class AttackState : NavigationState {
         }
     }
 
-	public override void OnTriggerStay(Collider other) {
-		if (other.tag.Contains(Tags.PLAYER)) {
-			seen = MAX_SEEN;
-		}
-	}
-
     public override void OnTriggerExit(Collider other) {
-  
+        if (other.tag.Contains(Tags.PLAYER)) {
+            player = null;
+            rage = false;
+            projectileControl.enabled = false;
+            controller.SwitchBehavior(Behavior.Wander);
+        }
     }
+
+    //public override void Update() {
+    //    if (--seen < 0) {
+    //        Debug.Log("HALLO");
+    //        player = null;
+    //        rage = false;
+    //        projectileControl.enabled = false;
+    //        controller.SwitchBehavior(Behavior.Wander);
+    //    } else {
+    //        base.Update();
+    //    }
+    //}
+
+    //public override void OnTriggerStay(Collider other) {
+    //    if (other.tag.Contains(Tags.PLAYER)) {
+    //        seen = MAX_SEEN;
+    //    }
+    //}
 }

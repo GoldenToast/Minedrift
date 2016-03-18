@@ -26,9 +26,9 @@ public abstract class BehaviorController : MonoBehaviour {
         current.OnTriggerExit(other);
     }
 
-	void OnTriggerStay(Collider other) {
-		current.OnTriggerStay (other);
-	}
+    //void OnTriggerStay(Collider other) {
+    //    current.OnTriggerStay (other);
+    //}
 
     public abstract void Awake();
 

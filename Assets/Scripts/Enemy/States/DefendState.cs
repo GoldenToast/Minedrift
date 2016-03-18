@@ -26,11 +26,4 @@ public abstract class DefendState : NavigationState {
             controller.SwitchBehavior(Behavior.Attack, other);
         }
     }
-
-    public override void OnTriggerExit(Collider other) {
-        // Nuthin
-    }
-
-	public override void OnTriggerStay (Collider other) {
-	}
 }
