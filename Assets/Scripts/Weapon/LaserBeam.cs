@@ -108,14 +108,13 @@ namespace Weapon {
 		}
 
 		void OnTriggerEnter(Collider other) {
-			Debug.Log (this.name + "hit" + other.name);
-			if (!other.tag.Equals(this.tag))
-			{ 
-				if (other.gameObject.GetComponent<Hitable>() != null)
-				{
-					Debug.Log("Damage " + other.gameObject);
-					other.gameObject.GetComponent<Hitable>().takeDamage(damage);
-				}
+			if (this.tag.Contains (other.tag)) {
+				return;
+			}
+			if (other.gameObject.GetComponent<Hitable>() != null)
+			{
+				Debug.Log("Damage " + other.gameObject);
+				other.gameObject.GetComponent<Hitable>().takeDamage(damage);
 			}
 		}
 	}

@@ -25,19 +25,15 @@ namespace Weapon
 		}
 
 		void OnTriggerEnter(Collider other) {
-			if (other.tag.Equals(Tags.RADAR)) {
+			if (this.tag.Contains (other.tag)) {
 				return;
 			}
-
-			if (!this.tag.Contains(other.tag)){ 
-				if (other.gameObject.GetComponent<Hitable>() != null)
-				{
-					Debug.Log("Damage " + other.gameObject);
-					other.gameObject.GetComponent<Hitable>().takeDamage(damage);
-				}
+			if (other.gameObject.GetComponent<Hitable>() != null)
+			{
+				Debug.Log("Damage " + other.gameObject);
+				other.gameObject.GetComponent<Hitable>().takeDamage(damage);
 				Destroy(this.gameObject);
 			}
-
 		}
 	}
 }
