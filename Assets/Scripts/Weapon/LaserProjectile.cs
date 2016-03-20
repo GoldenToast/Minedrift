@@ -29,8 +29,7 @@ namespace Weapon
 				return;
 			}
 
-			if (!other.tag.Equals(this.tag))
-			{ 
+			if (!this.tag.Contains(other.tag)){ 
 				if (other.gameObject.GetComponent<Hitable>() != null)
 				{
 					Debug.Log("Damage " + other.gameObject);

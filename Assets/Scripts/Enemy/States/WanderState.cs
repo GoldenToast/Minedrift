@@ -16,7 +16,7 @@ public class WanderState : NavigationState {
         Debug.Log(other.tag);
         if (other.CompareTag(Tags.PLAYER)) {
             controller.SwitchBehavior(Behavior.Attack, other);
-        } else if (other.CompareTag(Tags.LASER)) {
+        } else if (other.CompareTag(Tags.PLAYER_LASER)) {
             controller.SwitchBehavior(Behavior.Defend, other);
         }
     }
