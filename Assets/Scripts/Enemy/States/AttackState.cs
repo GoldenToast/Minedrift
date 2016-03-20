@@ -20,14 +20,14 @@ public abstract class AttackState : NavigationState {
     }
 
     public override void OnTriggerEnter(Collider other) {
-        if (other.tag.Contains(Tags.PLAYER)) {
+        if (other.CompareTag(Tags.PLAYER)) {
             player = player ?? other.transform;
             projectileControl.enabled = true;
         }
     }
 
     public override void OnTriggerExit(Collider other) {
-        if (other.tag.Contains(Tags.PLAYER)) {
+        if (other.CompareTag(Tags.PLAYER)) {
             player = null;
             rage = false;
             projectileControl.enabled = false;

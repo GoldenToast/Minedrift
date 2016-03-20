@@ -16,7 +16,7 @@ public class ShieldState : DefendState {
     public override void OnTriggerEnter(Collider other) {
         base.OnTriggerEnter(other);
 
-        if (other.tag.Equals(Tags.LASER)) {
+        if (other.CompareTag(Tags.LASER)) {
             //shieldControl.enabled = true;
         }
     }
