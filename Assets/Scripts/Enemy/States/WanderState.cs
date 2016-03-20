@@ -5,6 +5,8 @@ public class WanderState : NavigationState {
 
     private Transform transform;
 
+    private const int ACCOMPLISHED = 3;
+
     public WanderState(BehaviorController controller) 
         : base(controller) {
         transform = controller.transform;
@@ -13,7 +15,7 @@ public class WanderState : NavigationState {
     public override void OnTriggerEnter(Collider other) {
         if (other.tag.Contains(Tags.PLAYER)) {
             controller.SwitchBehavior(Behavior.Attack, other);
-        } else if (other.tag.Equals(Tags.COLLECTABLE)) {
+        } else if (other.tag.Equals(Tags.LASER)) {
             controller.SwitchBehavior(Behavior.Defend, other);
         }
     }
@@ -23,7 +25,7 @@ public class WanderState : NavigationState {
     }
 
     private bool IsApplicable() {
-        return Vector3.Distance(transform.position, base.destination) < 3;
+        return Vector3.Distance(transform.position, base.destination) < ACCOMPLISHED;
     }
 
     private Vector3 randPosition(Vector3 currentPosition) {

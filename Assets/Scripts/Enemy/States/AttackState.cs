@@ -11,9 +11,6 @@ public abstract class AttackState : NavigationState {
 
     private MonoBehaviour projectileControl;
 
-	private int seen = 0;
-	private int MAX_SEEN = 10;
-
     protected AttackState(BehaviorController controller)
         : base(controller) {
         transform = controller.transform;
@@ -38,21 +35,5 @@ public abstract class AttackState : NavigationState {
         }
     }
 
-    //public override void Update() {
-    //    if (--seen < 0) {
-    //        Debug.Log("HALLO");
-    //        player = null;
-    //        rage = false;
-    //        projectileControl.enabled = false;
-    //        controller.SwitchBehavior(Behavior.Wander);
-    //    } else {
-    //        base.Update();
-    //    }
-    //}
 
-    //public override void OnTriggerStay(Collider other) {
-    //    if (other.tag.Contains(Tags.PLAYER)) {
-    //        seen = MAX_SEEN;
-    //    }
-    //}
 }

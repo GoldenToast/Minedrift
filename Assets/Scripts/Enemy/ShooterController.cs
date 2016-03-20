@@ -14,6 +14,7 @@ public class ShooterController : BehaviorController {
     public override void Awake() {
         behaviors.Add(Behavior.Wander, new WanderState(this));
         behaviors.Add(Behavior.Attack, new ShootState(this));
+        behaviors.Add(Behavior.Defend, new ShieldState(this));
     }
 
 	void OnDrawGizmos(){
