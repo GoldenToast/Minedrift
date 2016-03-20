@@ -5,7 +5,10 @@ using System.Collections;
 namespace Weapon {
 [RequireComponent (typeof(LineRenderer))]
 	public class LaserBeam : AbstractWeapon  {
-		
+
+		public int damage;
+		public float lifetime;
+
 		public float laserWidth = 1.0f;
 		public float noise = 1.0f;
 		public float maxLength = 50.0f;

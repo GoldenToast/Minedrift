@@ -4,14 +4,11 @@ namespace Weapon
 {
 	public abstract class AbstractWeapon : MonoBehaviour
 	{
-		
-		public float lifetime;
+		public GameObject projectilePrefab;
+	
 		public float fireFrequency;
-		public int damage;
 
 		public abstract void Fire(GameObject origin);
-
-
 	}
 }
 

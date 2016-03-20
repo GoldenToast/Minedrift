@@ -58,9 +58,9 @@ public class PlayerWeaponControl : MonoBehaviour {
         {
             currentMount = mount1;
         }
-		GameObject weaponObj = GameObject.Instantiate(weaponPrefab, currentMount.position, currentMount.rotation) as GameObject;
-		weaponObj.tag = this.tag;
-		AbstractWeapon weapon = weaponObj.GetComponent<AbstractWeapon>();
+
+		AbstractWeapon weapon = weaponPrefab.GetComponent<AbstractWeapon>();
+
 		lastShot = weapon.fireFrequency;
 		weapon.Fire (this.gameObject);
     }
