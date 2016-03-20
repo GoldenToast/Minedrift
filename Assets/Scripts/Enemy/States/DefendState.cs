@@ -3,7 +3,9 @@ using System.Collections;
 
 public abstract class DefendState : NavigationState {
 
-    private const float timerMaximum = 5.0f;
+    private const float TIMER_MAX = 5.0f;
+    private const float TIMER_EXCEEDED = 0.0f;
+
     private float timerLeft;
 
     public DefendState(BehaviorController controller)
@@ -14,23 +16,16 @@ public abstract class DefendState : NavigationState {
         timerLeft -= Time.deltaTime;
         base.Update();
 
-        if (timerLeft < 0.0f) {
+        if (timerLeft < TIMER_EXCEEDED) {
             controller.SwitchBehavior(Behavior.Wander);
         }
     }
 
     public override void OnTriggerEnter(Collider other) {
-        if (other.tag.Equals(Tags.LASER)) {
-            timerLeft = timerMaximum;
+        if (other.CompareTag(Tags.LASER)) {
+            timerLeft = TIMER_MAX;
         } else if (other.tag.Equals(Tags.PLAYER)) {
             controller.SwitchBehavior(Behavior.Attack, other);
         }
     }
-
-    public override void OnTriggerExit(Collider other) {
-        // Nuthin
-    }
-
-	public override void OnTriggerStay (Collider other) {
-	}
 }
