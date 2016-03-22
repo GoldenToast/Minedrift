@@ -99,12 +99,12 @@ public class PlayerShipMovement : MonoBehaviour {
 	}
 
 	void moveForward(float amount){
-		rb.AddForce(transform.forward * amount * forwardSpeed,ForceMode.Impulse);
+		rb.AddForce(Vector3.forward * amount * forwardSpeed,ForceMode.Impulse);
 	}
 
 	void moveSide(float amount){
-		rb.AddForce(transform.right * -1 * amount * sideSpeed,ForceMode.Impulse);
-		rb.AddForce(transform.right * -1 * amount * sideDash,ForceMode.Impulse);
+		rb.AddForce(Vector3.right * -1 * amount * sideSpeed,ForceMode.Impulse);
+		rb.AddForce(Vector3.right * -1 * amount * sideDash,ForceMode.Impulse);
 	}
 
     void FixedUpdate() {
