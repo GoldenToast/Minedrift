@@ -13,7 +13,9 @@ public class EnemyProjectileControl : MonoBehaviour {
 
     private Transform mount1;
     private Transform mount2;
-    private Transform currentMount;
+	private GameObject weapon1;
+	private GameObject weapon2;
+	private GameObject currentWeapon;
    
     private float lastShot;
 
@@ -21,35 +23,35 @@ public class EnemyProjectileControl : MonoBehaviour {
     void Start () {
         this.mount1 = transform.FindChild(MOUNT1);
         this.mount2 = transform.FindChild(MOUNT2);
-        currentMount = mount1;
+		this.weapon1 = Instantiate (weaponPrefab,mount1.position,mount1.rotation) as GameObject;
+		this.weapon1.transform.SetParent (mount1);
+		this.weapon2 = Instantiate (weaponPrefab,mount2.position,mount2.rotation) as GameObject;
+		this.weapon2.transform.SetParent (mount2);
+		currentWeapon = weapon1;
     }
-	
+		
+
 	// Update is called once per frame
 	void Update () {
         lastShot -= 1 * Time.deltaTime;
         if (lastShot <= 0)
         {
-            fire(weaponPrefab);
+            fire();
         }
     }
-
   
-	void fire(GameObject weaponPrefab)    {
-		if (weaponPrefab == null) {
-			return;
-		}
-		if (currentMount.Equals(mount1))
+	void fire()    {
+		if (currentWeapon.Equals(weapon1))
 		{
-			currentMount = mount2;
+			currentWeapon = weapon2;
 		}
 		else
 		{
-			currentMount = mount1;
+			currentWeapon = weapon1;
 		}
-		GameObject weaponObj = GameObject.Instantiate(weaponPrefab, currentMount.position, currentMount.rotation) as GameObject;
-		weaponObj.tag = this.tag;
-		AbstractWeapon weapon = weaponObj.GetComponent<AbstractWeapon>();
-		lastShot = weapon.fireFrequency;
+
+		AbstractWeapon weapon = currentWeapon.GetComponent<AbstractWeapon>();
 		weapon.Fire (this.gameObject);
+		lastShot = weapon.fireFrequency;
 	}
 }

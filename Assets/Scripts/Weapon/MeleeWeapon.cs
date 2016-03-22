@@ -4,6 +4,9 @@ using System.Collections;
 namespace Weapon{
 	public class MeleeWeapon : AbstractWeapon {
 
+
+		public int damage;
+
 		public override void Fire(GameObject origin){
 			
 		}

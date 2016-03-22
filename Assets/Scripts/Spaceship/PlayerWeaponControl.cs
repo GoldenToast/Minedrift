@@ -11,57 +11,61 @@ public class PlayerWeaponControl : MonoBehaviour {
 
     public int playerNumber;
 
-    public GameObject weaponPrefab;
-
     private Transform mount1;
     private Transform mount2;
-    private Transform currentMount;
+	private GameObject weapon1;
+	private GameObject weapon2;
+	private GameObject currentWeapon;
 
     private float lastShot;
+
+	public void attachWeapon(GameObject weapon){
+		Destroy (weapon1);
+		Destroy (weapon2);
+		this.mount1 = transform.FindChild(MOUNT1);
+		this.mount2 = transform.FindChild(MOUNT2);
+		this.weapon1 = Instantiate (weapon,mount1.position,mount1.rotation) as GameObject;
+		this.weapon1.transform.SetParent (mount1);
+		this.weapon2 = Instantiate (weapon,mount2.position,mount2.rotation) as GameObject;
+		this.weapon2.transform.SetParent (mount2);
+		currentWeapon = weapon1;
+	}
+		
 
     // Use this for initialization
     void Start () {
         this.mount1 =  transform.FindChild(MOUNT1);
         this.mount2 = transform.FindChild(MOUNT2);
-        currentMount = mount1;
+		currentWeapon = weapon1;
     }
 	
 	// Update is called once per frame
 	void Update () {
         lastShot -= 1 * Time.deltaTime;
-        if (playerNumber == 1)
-        {
-            if (lastShot <= 0 && Input.GetButton(FIRE1))
-            {
-                fire(weaponPrefab);
+        if (playerNumber == 1) {
+            if (lastShot <= 0 && Input.GetButton(FIRE1)) {
+				fire();
             }
         }
-        if (playerNumber == 2)
-        {
-            if (lastShot <= 0 && Input.GetButton(FIRE2))
-            {
-                fire(weaponPrefab);
+        if (playerNumber == 2) {
+            if (lastShot <= 0 && Input.GetButton(FIRE2)) {
+				fire();
             }
         }
-
     }
 
-	void fire(GameObject weaponPrefab)    {
-		if (weaponPrefab == null) {
+	void fire()    {
+		if (currentWeapon == null) {
 			return;
 		}
-        if (currentMount.Equals(mount1))
-        {
-            currentMount = mount2;
+		if (currentWeapon.Equals(weapon1)) {
+			currentWeapon = weapon2;
+        } else {
+			currentWeapon = weapon1;
         }
-        else
-        {
-            currentMount = mount1;
-        }
-		GameObject weaponObj = GameObject.Instantiate(weaponPrefab, currentMount.position, currentMount.rotation) as GameObject;
-		weaponObj.tag = this.tag;
-		AbstractWeapon weapon = weaponObj.GetComponent<AbstractWeapon>();
-		lastShot = weapon.fireFrequency;
+
+		AbstractWeapon weapon = currentWeapon.GetComponent<AbstractWeapon>();
 		weapon.Fire (this.gameObject);
+		lastShot = weapon.fireFrequency;
     }
 }

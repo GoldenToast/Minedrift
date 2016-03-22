@@ -5,7 +5,10 @@ using System.Collections;
 namespace Weapon {
 [RequireComponent (typeof(LineRenderer))]
 	public class LaserBeam : AbstractWeapon  {
-		
+
+		private string LASER = "Laser";
+
+		public int damage;
 		public float laserWidth = 1.0f;
 		public float noise = 1.0f;
 		public float maxLength = 50.0f;
@@ -21,9 +24,12 @@ namespace Weapon {
 		public ParticleSystem endEffect;
 		Vector3 offset;
 
+		private float currentLength = 50.0f;
+		private bool on;
 
 		public override void Fire(GameObject origin){
-			myTransform = origin.transform;
+			tag = origin.tag + LASER;
+			on = true;
 		}
 
 		// Use this for initialization
@@ -36,11 +42,17 @@ namespace Weapon {
 			if (endEffect) {
 				endEffectTransform = endEffect.transform;
 			}
-			Destroy(this.gameObject, lifetime);
+			myTransform = this.transform;
 		}
 
 		// Update is called once per frame
 		void Update () {
+			if (!on) {
+				currentLength = 0;
+			} else {
+				currentLength = maxLength;
+				on = false;
+			}
 			RenderLaser();
 		}
 
@@ -65,7 +77,7 @@ namespace Weapon {
 		void UpdateLength(){
 			//Raycast from the location of the cube forwards
 			RaycastHit[] hit;
-			hit = Physics.RaycastAll(myTransform.position, myTransform.forward, maxLength);
+			hit = Physics.RaycastAll(myTransform.position, myTransform.forward, currentLength);
 			int i = 0;
 			while(i < hit.Length){
 				//Check to make sure we aren't hitting triggers but colliders
@@ -90,20 +102,19 @@ namespace Weapon {
 				if(endEffect.isPlaying)
 					endEffect.Stop();
 			}
-			length = (int)maxLength;
+			length = (int)currentLength;
 			position = new Vector3[length];
 			lineRenderer.SetVertexCount(length);
 		}
 
 		void OnTriggerEnter(Collider other) {
-			Debug.Log (this.name + "hit" + other.name);
-			if (!other.tag.Equals(this.tag))
-			{ 
-				if (other.gameObject.GetComponent<Hitable>() != null)
-				{
-					Debug.Log("Damage " + other.gameObject);
-					other.gameObject.GetComponent<Hitable>().takeDamage(damage);
-				}
+			if (this.tag.Contains (other.tag)) {
+				return;
+			}
+			if (other.gameObject.GetComponent<Hitable>() != null)
+			{
+				Debug.Log("Damage " + other.gameObject);
+				other.gameObject.GetComponent<Hitable>().takeDamage(damage);
 			}
 		}
 	}
