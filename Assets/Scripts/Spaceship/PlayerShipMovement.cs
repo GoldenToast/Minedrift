@@ -50,7 +50,7 @@ public class PlayerShipMovement : MonoBehaviour {
 		}
 		       
 		foreach (ParticleSystem ps in psEngines) {
-			adjustEnginePower(ps,moveDirection.y);
+			adjustEnginePower(ps,moveDirection.magnitude);
 		}
     }
 
@@ -80,13 +80,12 @@ public class PlayerShipMovement : MonoBehaviour {
 
 	private void handleMouseLook(){
 		Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
-
 		int MouseLookLayer = LayerMask.NameToLayer(Layers.MOUSE_HIT_PLANE);
 		int MouseLookMask = 1 << MouseLookLayer; 
 		Physics.Raycast (ray, out mouseHit, MouseLookMask);
 	}
 
-    private void adjustEnginePower(ParticleSystem ps,  float y)    {
+    private void adjustEnginePower(ParticleSystem ps, float y)    {
         power = Mathf.Abs(y);
         power = Mathf.Clamp01(power);
         float speed = startSpeedMax * power;
@@ -108,7 +107,6 @@ public class PlayerShipMovement : MonoBehaviour {
 	}
 
     void FixedUpdate() {
-		Debug.Log ("Movement " + moveDirection);
 		moveForward (moveDirection.y);
 		moveSide (moveDirection.x);
     }
