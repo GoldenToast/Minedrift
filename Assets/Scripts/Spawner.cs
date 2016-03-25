@@ -25,7 +25,6 @@ public class Spawner : MonoBehaviour {
 			}
 		}
 	}
-
 	private Vector3 randPosition(Vector3 pos){
 		Vector2 dir = Random.insideUnitSphere * spawnRadius;
 		Vector3 newRandPos = pos + new Vector3(dir.x, 0, dir.y);
