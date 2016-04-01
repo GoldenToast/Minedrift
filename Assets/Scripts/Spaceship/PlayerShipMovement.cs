@@ -8,29 +8,31 @@ public class PlayerShipMovement : MonoBehaviour {
     private const string HORIZONTAL1 = "Horizontal1";
     private const string VERTICAL1 = "Vertical1";
 
-    private const string HORIZONTAL2 = "Horizontal2";
-    private const string VERTICAL2 = "Vertical2";
-
     public int playerNumber;
 
     public float forwardSpeed;
 	public float sideSpeed;
 	public float rotationSpeed;
-	public float dashSpeed;
+	public float boostPower;
+	public float boostCooldown;
+
+	public float jumpDistance;
+	public float jumpCooldown;
 
 	private Vector2 moveDirection;
 	private RaycastHit mouseHit;
-	private float sideDash;
 
-	private float buttonCooler = 0.3f; // Half a second before reset
-	private int buttonCount = 0;
+//	private float sideDash;
+//	private float buttonCooler = 0.3f; // Half a second before reset
+//	private int buttonCount = 0;
 
 	public List<ParticleSystem> psEngines;
     private Rigidbody rb;
 
     private float power = 0;
     private float startSpeedMax;
-
+	private float currentBoostCooldown;
+	private float currentJumpCooldown;
 
     // Use this for initialization
     void Start () {
@@ -57,25 +59,27 @@ public class PlayerShipMovement : MonoBehaviour {
 	private void handleInput(String horizontal, String vertical){
 		float x = Input.GetAxis(horizontal);
 		float y = Input.GetAxis(vertical);
-
-		sideDash = 0;
-
-		if (Input.GetButtonDown(horizontal)){
-			if ( buttonCooler > 0 && buttonCount == 1/*Number of Taps you want Minus One*/){
-				sideDash = Math.Sign(x);
-				x = 0;
-			}else{
-				buttonCooler = 0.3f; 
-				buttonCount += 1 ;
-			}
-		}
-		if ( buttonCooler > 0 ){
-			buttonCooler -= 1 * Time.deltaTime ;
-		}else{
-			buttonCount = 0 ;
-		}
-
 		moveDirection = new Vector2(x,y);
+
+		if (Input.GetButtonDown ("Special") && currentBoostCooldown <= 0) {
+			moveDirection *= boostPower;
+			currentBoostCooldown = boostCooldown;
+		} else {
+			currentBoostCooldown -= 1 * Time.deltaTime ;
+		}
+
+		if (Input.GetButtonDown ("Fire2") && currentJumpCooldown <= 0) {
+			Jump();
+			currentJumpCooldown = jumpCooldown;
+		} else {
+			currentJumpCooldown -= 1 * Time.deltaTime ;
+		}
+
+	}
+
+	private void Jump(){
+		
+		transform.position += transform.forward.normalized * jumpDistance;
 	}
 
 	private void handleMouseLook(){
@@ -103,10 +107,10 @@ public class PlayerShipMovement : MonoBehaviour {
 
 	void moveSide(float amount){
 		rb.AddForce(Vector3.right * -1 * amount * sideSpeed,ForceMode.Impulse);
-		rb.AddForce(Vector3.right * -1 * amount * sideDash,ForceMode.Impulse);
 	}
 
     void FixedUpdate() {
+		Debug.Log (moveDirection);
 		moveForward (moveDirection.y);
 		moveSide (moveDirection.x);
     }
