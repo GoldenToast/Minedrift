@@ -110,7 +110,6 @@ public class PlayerShipMovement : MonoBehaviour {
 	}
 
     void FixedUpdate() {
-		Debug.Log (moveDirection);
 		moveForward (moveDirection.y);
 		moveSide (moveDirection.x);
     }
