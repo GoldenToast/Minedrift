@@ -17,7 +17,9 @@ public class ShieldState : DefendState {
         base.OnTriggerEnter(other);
 
         if (other.CompareTag(Tags.PLAYER_LASER)) {
+
             //shieldControl.enabled = true;
+            //shieldControl.EstimateCollision(other.transform.position, other.transform.forward);
         }
     }
 

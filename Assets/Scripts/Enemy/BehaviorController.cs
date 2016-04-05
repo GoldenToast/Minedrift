@@ -3,7 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 
 public enum Behavior {
-    Wander, Attack, Defend
+    Wander, Attack, Defend /*Cohort*/ 
 };
 
 public abstract class BehaviorController : MonoBehaviour {
