@@ -1,0 +1,301 @@
+fileFormatVersion: 2
+guid: 95bf2c9d857234e18a57becd29237258
+timeCreated: 1461001056
+licenseType: Free
+TextureImporter:
+  fileIDToRecycleName:
+    21300000: Spaceman_Head
+    21300002: Spaceman_Leg_R
+    21300004: Spacemen_Leg_L
+    21300006: Spaceman_Torso
+    21300008: Spacemen_Arm_R
+    21300010: Spacemen_Arm_L
+    21300012: Spaceman_Backpack
+    21300014: Spaceman_Leg_L
+    21300016: Spaceman_Arm_Up_R
+    21300018: Spaceman_Arm_Up_L
+    21300020: Spaceman_Arm_Low_R
+    21300022: Spaceman_Arm_Low_L
+    21300024: Spaceman_0
+    21300026: Spaceman_1
+    21300028: Spaceman_2
+    21300030: Spaceman_3
+    21300032: Spaceman_4
+    21300034: Spaceman_5
+    21300036: Spaceman_6
+    21300038: Spaceman_7
+    21300040: Spaceman_8
+    21300042: Spaceman_9
+    21300044: Spaceman_10
+    21300046: Spaceman_11
+  serializedVersion: 2
+  mipmaps:
+    mipMapMode: 0
+    enableMipMap: 1
+    linearTexture: 0
+    correctGamma: 0
+    fadeOut: 0
+    borderMipMap: 0
+    mipMapFadeDistanceStart: 1
+    mipMapFadeDistanceEnd: 3
+  bumpmap:
+    convertToNormalMap: 0
+    externalNormalMap: 0
+    heightScale: 0.25
+    normalMapFilter: 0
+  isReadable: 0
+  grayScaleToAlpha: 0
+  generateCubemap: 0
+  cubemapConvolution: 0
+  cubemapConvolutionSteps: 7
+  cubemapConvolutionExponent: 1.5
+  seamlessCubemap: 0
+  textureFormat: -1
+  maxTextureSize: 2048
+  textureSettings:
+    filterMode: -1
+    aniso: 16
+    mipBias: -1
+    wrapMode: 1
+  nPOTScale: 0
+  lightmap: 0
+  rGBM: 0
+  compressionQuality: 50
+  allowsAlphaSplitting: 0
+  spriteMode: 2
+  spriteExtrude: 1
+  spriteMeshType: 1
+  alignment: 0
+  spritePivot: {x: 0.5, y: 0.5}
+  spriteBorder: {x: 0, y: 0, z: 0, w: 0}
+  spritePixelsToUnits: 100
+  alphaIsTransparency: 1
+  textureType: 8
+  buildTargetSettings: []
+  spriteSheet:
+    sprites:
+    - name: Spaceman_0
+      rect:
+        serializedVersion: 2
+        x: 8
+        y: 360
+        width: 41
+        height: 73
+      alignment: 9
+      pivot: {x: 0.5, y: 0.8}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: -14.5, y: 14.600006}
+        - {x: -19.5, y: 12.600006}
+        - {x: -20.5, y: -0.3999939}
+        - {x: -20.5, y: -58.399994}
+        - {x: 20.5, y: -58.399994}
+        - {x: 20.5, y: 10.600006}
+        - {x: 18.5, y: 14.600006}
+    - name: Spaceman_1
+      rect:
+        serializedVersion: 2
+        x: 78
+        y: 360
+        width: 41
+        height: 74
+      alignment: 9
+      pivot: {x: 0.5, y: 0.8}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: -17.5, y: 14.799988}
+        - {x: -19.5, y: 11.799988}
+        - {x: -20.5, y: 8.799988}
+        - {x: -20.5, y: -52.200012}
+        - {x: -11.5, y: -59.200012}
+        - {x: 20.5, y: -59.200012}
+        - {x: 20.5, y: 14.799988}
+    - name: Spaceman_2
+      rect:
+        serializedVersion: 2
+        x: 146
+        y: 278
+        width: 144
+        height: 157
+      alignment: 9
+      pivot: {x: 0.26451015, y: 0.31617823}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: -27.089462, y: 107.360016}
+        - {x: -38.089462, y: 105.360016}
+        - {x: -38.089462, y: -21.639984}
+        - {x: -6.0894623, y: -49.639984}
+        - {x: 70.91054, y: -49.639984}
+        - {x: 105.91054, y: -36.639984}
+        - {x: 105.91054, y: 75.360016}
+        - {x: 73.91054, y: 107.360016}
+    - name: Spaceman_3
+      rect:
+        serializedVersion: 2
+        x: 8
+        y: 289
+        width: 62
+        height: 66
+      alignment: 9
+      pivot: {x: 0.31380612, y: 0.751432}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: -19.455978, y: 16.405487}
+        - {x: -19.455978, y: -44.594513}
+        - {x: -16.455978, y: -49.594513}
+        - {x: 42.54402, y: -49.594513}
+        - {x: 42.54402, y: -7.594513}
+        - {x: 28.544022, y: 16.405487}
+    - name: Spaceman_4
+      rect:
+        serializedVersion: 2
+        x: 78
+        y: 291
+        width: 62
+        height: 65
+      alignment: 9
+      pivot: {x: 0.3254435, y: 0.7442002}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: 27.822502, y: -21.373016}
+        - {x: 19.822502, y: 15.626984}
+        - {x: 11.822502, y: 16.626984}
+        - {x: -20.177498, y: 16.626984}
+        - {x: -20.177498, y: -25.373016}
+        - {x: -19.177498, y: -44.373016}
+        - {x: -19.177498, y: -48.373016}
+        - {x: 41.822502, y: -48.373016}
+        - {x: 41.822502, y: -28.373016}
+        - {x: 33.822502, y: -22.373016}
+    - name: Spaceman_5
+      rect:
+        serializedVersion: 2
+        x: 18
+        y: 29
+        width: 53
+        height: 240
+      alignment: 9
+      pivot: {x: 0.77226454, y: 0.34066856}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: -34.93002, y: 158.23955}
+        - {x: -40.93002, y: 140.23955}
+        - {x: -40.93002, y: -65.76045}
+        - {x: -36.93002, y: -81.76045}
+        - {x: -0.9300194, y: -81.76045}
+        - {x: 12.069981, y: -65.76045}
+        - {x: 12.069981, y: 155.23955}
+        - {x: 7.0699806, y: 158.23955}
+    - name: Spaceman_6
+      rect:
+        serializedVersion: 2
+        x: 84
+        y: 185
+        width: 36
+        height: 72
+      alignment: 9
+      pivot: {x: 0.60020804, y: 0.7906043}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: -13.607491, y: 15.076492}
+        - {x: -18.60749, y: 6.0764923}
+        - {x: -21.60749, y: -3.9235077}
+        - {x: -21.60749, y: -54.923508}
+        - {x: -20.60749, y: -56.923508}
+        - {x: 6.3925095, y: -56.923508}
+        - {x: 14.392509, y: -51.923508}
+        - {x: 14.392509, y: 11.076492}
+        - {x: 10.392509, y: 15.076492}
+    - name: Spaceman_7
+      rect:
+        serializedVersion: 2
+        x: 133
+        y: 186
+        width: 36
+        height: 71
+      alignment: 9
+      pivot: {x: 0.6002083, y: 0.8150216}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: -19.607498, y: 13.133469}
+        - {x: -21.607498, y: 7.1334686}
+        - {x: -21.607498, y: -57.86653}
+        - {x: 11.392502, y: -57.86653}
+        - {x: 14.392502, y: -50.86653}
+        - {x: 14.392502, y: 13.133469}
+    - name: Spaceman_8
+      rect:
+        serializedVersion: 2
+        x: 181
+        y: 166
+        width: 101
+        height: 105
+      alignment: 9
+      pivot: {x: 0.5, y: 0.19765683}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: 10.5, y: 84.24603}
+        - {x: -32.5, y: 84.24603}
+        - {x: -47.5, y: 67.24603}
+        - {x: -50.5, y: 47.246033}
+        - {x: -50.5, y: -9.753967}
+        - {x: -43.5, y: -20.753967}
+        - {x: 48.5, y: -20.753967}
+        - {x: 50.5, y: -13.753967}
+        - {x: 50.5, y: 50.246033}
+        - {x: 37.5, y: 77.24603}
+    - name: Spaceman_9
+      rect:
+        serializedVersion: 2
+        x: 80
+        y: 101
+        width: 43
+        height: 76
+      alignment: 9
+      pivot: {x: 0.46644166, y: 0.8132832}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: -20.056992, y: 14.190475}
+        - {x: -20.056992, y: -61.809525}
+        - {x: 22.943008, y: -61.809525}
+        - {x: 22.943008, y: 14.190475}
+    - name: Spaceman_10
+      rect:
+        serializedVersion: 2
+        x: 127
+        y: 102
+        width: 44
+        height: 75
+      alignment: 9
+      pivot: {x: 0.4672047, y: 0.83670026}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: -20.557007, y: 12.247482}
+        - {x: -20.557007, y: -58.752518}
+        - {x: -11.557007, y: -62.752518}
+        - {x: 20.442993, y: -62.752518}
+        - {x: 23.442993, y: -61.752518}
+        - {x: 23.442993, y: 7.2474823}
+        - {x: 18.442993, y: 12.247482}
+    - name: Spaceman_11
+      rect:
+        serializedVersion: 2
+        x: 185
+        y: 15
+        width: 94
+        height: 125
+      alignment: 9
+      pivot: {x: 0.40021792, y: 0.16849971}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: -30.620483, y: 103.93754}
+        - {x: -37.620483, y: 49.93754}
+        - {x: -37.620483, y: -21.062462}
+        - {x: 50.379517, y: -21.062462}
+        - {x: 53.379517, y: -20.062462}
+        - {x: 53.379517, y: 103.93754}
+    outline: []
+  spritePackingTag: Spacemen
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

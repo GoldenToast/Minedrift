@@ -17,10 +17,12 @@ public class AttractionZone : MonoBehaviour {
 
 	}
 	
-	void OnTriggerEnter(Collider other){
-		Debug.Log ("TriggerEnter " + other.name);
+	void OnTriggerStay(Collider other){
+		Debug.Log ("TriggerStay " + other.name);
 		if (other != null && other.GetComponent<FauxGravityBody> () != null) {
-			other.GetComponent<FauxGravityBody>().setAttractor(attractor);
+			if (!attractor.Equals(other.GetComponent<FauxGravityBody> ().getAttractor())) {
+				other.GetComponent<FauxGravityBody>().setAttractor(attractor);
+			}
 		}
 	}
 
