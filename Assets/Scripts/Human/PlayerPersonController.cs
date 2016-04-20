@@ -12,8 +12,10 @@ public class PlayerPersonController : MonoBehaviour {
 	private Animator animator;
 
 	public float forwardSpeed;
+	public float jumpHeight;
 
 	private bool facingRight;
+	bool jump;
 	private Vector2 moveDirection;
 	private GameObject centerOfRotation;
 
@@ -49,6 +51,13 @@ public class PlayerPersonController : MonoBehaviour {
 
 	void FixedUpdate() {
 		move (moveDirection.x);
+		performJump (jump);
+	}
+
+	private void performJump(bool jump){
+		if (jump) {
+			rb.AddForce (transform.forward * jumpHeight , ForceMode.Impulse);
+		}
 	}
 
 	private void move(float amount){
@@ -58,6 +67,7 @@ public class PlayerPersonController : MonoBehaviour {
 	private void handleInput(String horizontal){
 		float x = Input.GetAxis(horizontal);
 		moveDirection = new Vector2(x,0);
+		jump = Input.GetButton ("Jump");
 	}
 
 
