@@ -5,6 +5,7 @@ using System;
 public class PlayerPersonController : MonoBehaviour {
 
 	private const string HORIZONTAL1 = "Horizontal1";
+	private const string JUMP = "Jump";
 
 	public int playerNumber;
 
@@ -15,7 +16,7 @@ public class PlayerPersonController : MonoBehaviour {
 	public float jumpHeight;
 
 	private bool facingRight;
-	bool jump;
+	private bool jump;
 	private Vector2 moveDirection;
 	private GameObject centerOfRotation;
 
@@ -33,7 +34,7 @@ public class PlayerPersonController : MonoBehaviour {
 			createPlayerPointOfRotation ();
 		}
 		if (playerNumber == 1) {
-			handleInput(HORIZONTAL1);
+			handleInput();
 			handleAnimation ();
 		}
 	}
@@ -46,12 +47,15 @@ public class PlayerPersonController : MonoBehaviour {
 			centerOfRotation.transform.position = attractorCenter;
 			transform.SetParent (centerOfRotation.transform);
 		}
-			
 	}
 
 	void FixedUpdate() {
 		move (moveDirection.x);
 		performJump (jump);
+	}
+
+	public void enterShip(){
+		Destroy (centerOfRotation);
 	}
 
 	private void performJump(bool jump){
@@ -64,12 +68,11 @@ public class PlayerPersonController : MonoBehaviour {
 		centerOfRotation.transform.Rotate(transform.up * -1 * amount * forwardSpeed);
 	}
 
-	private void handleInput(String horizontal){
-		float x = Input.GetAxis(horizontal);
+	private void handleInput(){
+		float x = Input.GetAxis(HORIZONTAL1);
 		moveDirection = new Vector2(x,0);
-		jump = Input.GetButton ("Jump");
+		jump = Input.GetButton (JUMP);
 	}
-
 
 	private void handleAnimation(){
 		if (facingRight && moveDirection.x > 0 || !facingRight && moveDirection.x < 0) {

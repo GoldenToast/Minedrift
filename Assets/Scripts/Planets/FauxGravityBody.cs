@@ -33,7 +33,6 @@ public class FauxGravityBody : MonoBehaviour{
 		enable = false;
 	}
 
-
 	public void setAttractor(FauxGravityAttractor attractor){
 		Debug.Log ("Trigger New Attractor event: " + this.name + "-" + attractor);
 		this.attractor = attractor;
