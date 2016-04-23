@@ -7,4 +7,9 @@ public class EntranceControl : MonoBehaviour {
 		Debug.Log ("SHIP ACTIVE");
 		GetComponent<PlayerShipMovement> ().enabled = true;
 	}
+
+	public void exitShip(){
+		Debug.Log ("SHIP DEACTIVE");
+		GetComponent<PlayerShipMovement> ().enabled = false;
+	}
 }

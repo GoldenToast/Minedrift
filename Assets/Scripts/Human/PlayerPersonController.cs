@@ -18,14 +18,13 @@ public class PlayerPersonController : MonoBehaviour {
 	private bool facingRight;
 	private bool jump;
 	private Vector2 moveDirection;
-	private GameObject centerOfRotation;
+	private Vector3 attractorCenter;
 
 	// Use this for initialization
 	void Start () {
 		facingRight = true;
 		rb = GetComponent<Rigidbody>();
 		animator = GetComponent<Animator>();
-
 	}
 	
 	// Update is called once per frame
@@ -40,12 +39,8 @@ public class PlayerPersonController : MonoBehaviour {
 	}
 		
 	private void createPlayerPointOfRotation(){
-		if (!centerOfRotation) {
-			Vector3 attractorCenter = GetComponent<FauxGravityBody> ().getAttractor().transform.position;
-			centerOfRotation = new GameObject();
-			centerOfRotation.name = this.name;
-			centerOfRotation.transform.position = attractorCenter;
-			transform.SetParent (centerOfRotation.transform);
+		if (attractorCenter == Vector3.zero) {
+			attractorCenter = GetComponent<FauxGravityBody> ().getAttractor().transform.position;
 		}
 	}
 
@@ -55,7 +50,7 @@ public class PlayerPersonController : MonoBehaviour {
 	}
 
 	public void enterShip(){
-		Destroy (centerOfRotation);
+		Destroy(this.gameObject);
 	}
 
 	private void performJump(bool jump){
@@ -65,7 +60,7 @@ public class PlayerPersonController : MonoBehaviour {
 	}
 
 	private void move(float amount){
-		centerOfRotation.transform.Rotate(transform.up * -1 * amount * forwardSpeed);
+		transform.RotateAround (attractorCenter, transform.up, -1 * amount * forwardSpeed);
 	}
 
 	private void handleInput(){
@@ -90,4 +85,6 @@ public class PlayerPersonController : MonoBehaviour {
 			animator.SetInteger ("walkLR", 0);
 		}
 	}
+
+
 }

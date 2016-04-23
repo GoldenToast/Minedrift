@@ -19,7 +19,7 @@ namespace Weapon{
 
 		void OnTriggerEnter(Collider other)
 		{
-			if (other.tag.Equals(Tags.PLAYER1) || other.tag.Equals(Tags.PLAYER2))
+			if (other.tag.Equals(Tags.PLAYER_SHIP))
 		    {
 		        Debug.Log("Damage " + other.gameObject);
 		        if(other.gameObject.GetComponent<Hitable>() != null)

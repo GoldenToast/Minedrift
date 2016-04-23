@@ -20,7 +20,9 @@ public class UsageController : MonoBehaviour {
 		}
 		use = Input.GetButton (USE);
 		if (use) {
-			enterShip ();
+			if (usageObject.CompareTag (Tags.PLAYER_SHIP)) {
+				enterShip ();
+			}
 		}
 	}
 
@@ -29,14 +31,13 @@ public class UsageController : MonoBehaviour {
 		pController.enterShip ();
 		EntranceControl entrance = usageObject.GetComponent<EntranceControl> ();
 		entrance.enterShip ();
-
 	}
 		
-	void OnTriggerStay(Collider other){
+	void OnTriggerEnter(Collider other){
 		if (other.CompareTag (this.tag)) {
 			return;
 		}
-		Debug.Log ("UsageTriggerStay " + other.name);
+		Debug.Log ("UsageTriggerEnter " + other.name);
 		usageObject = other.gameObject;
 	}
 

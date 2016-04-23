@@ -11,7 +11,7 @@ public class GameManager : MonoBehaviour
     public CameraControl m_CameraControl;   
     public Text m_MessageText;              
        
-    public PlayerManager[] m_Players;           
+	public PlayerManager m_Player;          
     
     private int m_RoundNumber;              
     private WaitForSeconds m_StartWait;     
@@ -34,27 +34,15 @@ public class GameManager : MonoBehaviour
     }
 
 
-    private void SpawnAllPlayers()
-    {
-        for (int i = 0; i < m_Players.Length; i++)
-        {
-            m_Players[i].m_Instance =
-				Instantiate(m_Players[i].m_PlayerPrefab, m_Players[i].m_SpawnPoint.position, m_Players[i].m_SpawnPoint.rotation) as GameObject;
-            m_Players[i].m_PlayerNumber = i + 1;
-            m_Players[i].Setup();
-        }
+    private void SpawnAllPlayers(){
+		m_Player.m_Instance = Instantiate(m_Player.m_PlayerPrefab, m_Player.m_SpawnPoint.position, m_Player.m_SpawnPoint.rotation) as GameObject;
+        m_Player.m_PlayerNumber = 1;
+        m_Player.Setup();
     }
 
 
-    private void SetCameraTargets()
-    {
-        Transform[] targets = new Transform[m_Players.Length];
-
-        for (int i = 0; i < targets.Length; i++)
-        {
-            targets[i] = m_Players[i].m_Instance.transform;
-        }
-        m_CameraControl.m_Targets = targets;
+    private void SetCameraTargets(){
+		m_CameraControl.m_Target = m_Player.m_Instance.transform;
     }
 
 
@@ -88,15 +76,7 @@ public class GameManager : MonoBehaviour
     }
 
     private bool allPlayerDead() {
-        bool playersDead = true;
-        for (int i = 0; i < m_Players.Length; i++)
-        {
-            if (!m_Players[i].isDead())
-            {
-                playersDead = false;
-            }
-        }
-        return playersDead;
+		return m_Player.isDead();
     }
 
     private IEnumerator RoundEnding()
@@ -128,27 +108,19 @@ public class GameManager : MonoBehaviour
 
     private void ResetAllPlayers()
     {
-        for (int i = 0; i < m_Players.Length; i++)
-        {
-            m_Players[i].Reset();
-        }
+    
+        m_Player.Reset();
     }
 
 
     private void EnablePlayerControl()
     {
-        for (int i = 0; i < m_Players.Length; i++)
-        {
-            m_Players[i].EnableControl();
-        }
+		m_Player.EnableControl();
     }
 
 
     private void DisablePlayerControl()
     {
-        for (int i = 0; i < m_Players.Length; i++)
-        {
-            m_Players[i].DisableControl();
-        }
+		m_Player.DisableControl();
     }
 }

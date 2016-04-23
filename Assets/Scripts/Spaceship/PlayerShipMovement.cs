@@ -39,6 +39,7 @@ public class PlayerShipMovement : MonoBehaviour {
         rb = GetComponent<Rigidbody>();
 		foreach (ParticleSystem ps in psEngines) {
 			startSpeedMax = ps.startSpeed;
+			ps.startSpeed = power;
 		}
 		this.tag = this.tag/* + playerNumber*/;
     }
@@ -74,11 +75,9 @@ public class PlayerShipMovement : MonoBehaviour {
 		} else {
 			currentJumpCooldown -= 1 * Time.deltaTime ;
 		}
-
 	}
 
 	private void Jump(){
-		
 		transform.position += transform.forward.normalized * jumpDistance;
 	}
 
@@ -97,8 +96,10 @@ public class PlayerShipMovement : MonoBehaviour {
     }
 		
 	void rotate(){
-		Vector3 rotation = Vector3.Lerp (transform.forward, transform.position + mouseHit.point, Time.deltaTime * rotationSpeed);
-		transform.LookAt (new Vector3(mouseHit.point.x, 0 , mouseHit.point.z ), transform.up);
+		Vector3 shipMousePos = new Vector3 (mouseHit.point.x, 0, mouseHit.point.z) - transform.position;
+		Quaternion newRot = Quaternion.LookRotation(shipMousePos);
+		transform.rotation = Quaternion.Lerp(transform.rotation, newRot, rotationSpeed);
+		//transform.LookAt (mousePos, transform.up);
 	}
 
 	void moveForward(float amount){

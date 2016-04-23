@@ -7,9 +7,7 @@ public static class Tags {
 
     public const string PLAYER = "Player";
     
-    public const string PLAYER1 = "Player1";
-	
-    public const string PLAYER2 = "Player2";
+    public const string PLAYER_SHIP = "PlayerShip";
 	
     public const string COLLECTABLE = "Collectable";
 

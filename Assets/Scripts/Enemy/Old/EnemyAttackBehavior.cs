@@ -16,7 +16,7 @@ public abstract class EnemyAttackBehavior : NavigationBehavior {
     public bool IsPlayerInRange { get; set; }
 
 	void OnTriggerEnter (Collider other) {
-		if (other.tag.Equals (Tags.PLAYER1) || other.tag.Equals (Tags.PLAYER2)) {
+		if (other.tag.Equals (Tags.PLAYER_SHIP)) {
 			player = player ?? other.transform;
 			var wanderBehavior = GetComponent<EnemyWanderBehavior> ();
 			wanderBehavior.enabled = false;
@@ -29,7 +29,7 @@ public abstract class EnemyAttackBehavior : NavigationBehavior {
 	}
 
 	void OnTriggerExit (Collider other) {
-		if (other.tag.Equals (Tags.PLAYER1) || other.tag.Equals (Tags.PLAYER2)) {
+		if (other.tag.Equals (Tags.PLAYER_SHIP)) {
 			player = null;
 			var wanderBehavior = GetComponent<EnemyWanderBehavior> ();
 			wanderBehavior.enabled = true;
