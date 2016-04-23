@@ -1,12 +1,15 @@
 ﻿using UnityEngine;
-using System.Collections.Generic;
+
 using System;
 
 [RequireComponent(typeof(Rigidbody))]
+[RequireComponent(typeof(EnginePowerControl))]
 public class PlayerShipMovement : MonoBehaviour {
 
-    private const string HORIZONTAL1 = "Horizontal1";
-    private const string VERTICAL1 = "Vertical1";
+	private const string HORIZONTAL = "Horizontal";
+	private const string VERTICAL = "Vertical";
+	private const string SPECIAL = "Special";
+	private const string FIRE = "Fire2";
 
     public int playerNumber;
 
@@ -22,39 +25,24 @@ public class PlayerShipMovement : MonoBehaviour {
 	private Vector2 moveDirection;
 	private RaycastHit mouseHit;
 
-//	private float sideDash;
-//	private float buttonCooler = 0.3f; // Half a second before reset
-//	private int buttonCount = 0;
+	private Rigidbody rb;
+	private EnginePowerControl engineControl;
 
-	public List<ParticleSystem> psEngines;
-    private Rigidbody rb;
-
-    private float power = 0;
-    private float startSpeedMax;
+ 
 	private float currentBoostCooldown;
 	private float currentJumpCooldown;
 
-    // Use this for initialization
     void Start () {
         rb = GetComponent<Rigidbody>();
-		foreach (ParticleSystem ps in psEngines) {
-			startSpeedMax = ps.startSpeed;
-			ps.startSpeed = power;
-		}
-		this.tag = this.tag/* + playerNumber*/;
+		engineControl = GetComponent<EnginePowerControl>();
+		this.tag = this.tag;
     }
-	
-	// Update is called once per frame
+
 	void Update () {
-		if (playerNumber == 1) {
-			handleInput(HORIZONTAL1, VERTICAL1);
-			handleMouseLook ();
-			rotate ();
-		}
-		       
-		foreach (ParticleSystem ps in psEngines) {
-			adjustEnginePower(ps,moveDirection.magnitude);
-		}
+		handleInput(HORIZONTAL, VERTICAL);
+		handleMouseLook ();
+		rotate ();
+		engineControl.adjustEnginePower (moveDirection.magnitude);
     }
 
 	private void handleInput(String horizontal, String vertical){
@@ -62,14 +50,14 @@ public class PlayerShipMovement : MonoBehaviour {
 		float y = Input.GetAxis(vertical);
 		moveDirection = new Vector2(x,y);
 
-		if (Input.GetButtonDown ("Special") && currentBoostCooldown <= 0) {
+		if (Input.GetButtonDown (SPECIAL) && currentBoostCooldown <= 0) {
 			moveDirection *= boostPower;
 			currentBoostCooldown = boostCooldown;
 		} else {
 			currentBoostCooldown -= 1 * Time.deltaTime ;
 		}
 
-		if (Input.GetButtonDown ("Fire2") && currentJumpCooldown <= 0) {
+		if (Input.GetButtonDown (FIRE) && currentJumpCooldown <= 0) {
 			Jump();
 			currentJumpCooldown = jumpCooldown;
 		} else {
@@ -88,18 +76,11 @@ public class PlayerShipMovement : MonoBehaviour {
 		Physics.Raycast (ray, out mouseHit, MouseLookMask);
 	}
 
-    private void adjustEnginePower(ParticleSystem ps, float y)    {
-        power = Mathf.Abs(y);
-        power = Mathf.Clamp01(power);
-        float speed = startSpeedMax * power;
-        ps.startSpeed = speed;
-    }
-		
+   
 	void rotate(){
 		Vector3 shipMousePos = new Vector3 (mouseHit.point.x, 0, mouseHit.point.z) - transform.position;
 		Quaternion newRot = Quaternion.LookRotation(shipMousePos);
 		transform.rotation = Quaternion.Lerp(transform.rotation, newRot, rotationSpeed);
-		//transform.LookAt (mousePos, transform.up);
 	}
 
 	void moveForward(float amount){

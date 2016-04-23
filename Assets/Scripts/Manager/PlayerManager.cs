@@ -22,9 +22,6 @@ public class PlayerManager
 		m_Shooting = m_Instance.GetComponent<PlayerWeaponControl>();
        // m_CanvasGameObject = m_Instance.GetComponentInChildren<Canvas>().gameObject;
 
-        m_Movement.playerNumber = m_PlayerNumber;
-		m_Shooting.playerNumber = m_PlayerNumber;
-
     }
 
     public bool isDead() {

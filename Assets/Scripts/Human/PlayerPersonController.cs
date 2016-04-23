@@ -4,7 +4,7 @@ using System;
 
 public class PlayerPersonController : MonoBehaviour {
 
-	private const string HORIZONTAL1 = "Horizontal1";
+	private const string HORIZONTAL = "Horizontal";
 	private const string JUMP = "Jump";
 
 	public int playerNumber;
@@ -64,7 +64,7 @@ public class PlayerPersonController : MonoBehaviour {
 	}
 
 	private void handleInput(){
-		float x = Input.GetAxis(HORIZONTAL1);
+		float x = Input.GetAxis(HORIZONTAL);
 		moveDirection = new Vector2(x,0);
 		jump = Input.GetButton (JUMP);
 	}

@@ -36,7 +36,6 @@ public class GameManager : MonoBehaviour
 
     private void SpawnAllPlayers(){
 		m_Player.m_Instance = Instantiate(m_Player.m_PlayerPrefab, m_Player.m_SpawnPoint.position, m_Player.m_SpawnPoint.rotation) as GameObject;
-        m_Player.m_PlayerNumber = 1;
         m_Player.Setup();
     }
 

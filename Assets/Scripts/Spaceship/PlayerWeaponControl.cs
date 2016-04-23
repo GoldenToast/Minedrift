@@ -9,8 +9,6 @@ public class PlayerWeaponControl : MonoBehaviour {
     private const string FIRE1 = "Fire1";
     private const string FIRE2 = "Fire2";
 
-    public int playerNumber;
-
     private Transform mount1;
     private Transform mount2;
 	private GameObject weapon1;
@@ -42,15 +40,9 @@ public class PlayerWeaponControl : MonoBehaviour {
 	// Update is called once per frame
 	void Update () {
         lastShot -= 1 * Time.deltaTime;
-        if (playerNumber == 1) {
-            if (lastShot <= 0 && Input.GetButton(FIRE1)) {
-				fire();
-            }
-        }
-        if (playerNumber == 2) {
-            if (lastShot <= 0 && Input.GetButton(FIRE2)) {
-				fire();
-            }
+        
+        if (lastShot <= 0 && Input.GetButton(FIRE1)) {
+			fire();
         }
     }
 
