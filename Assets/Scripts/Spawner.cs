@@ -4,6 +4,9 @@ using System.Collections;
 public class Spawner : MonoBehaviour {
 
 	public GameObject objectPrefab;
+
+	public bool spawnOnStart;
+
 	[Range(1,9999)]
 	public int count = 1;
 
@@ -13,6 +16,12 @@ public class Spawner : MonoBehaviour {
 	public bool randomSpawn;
 	[Range(1,9999)]
 	public float spawnRadius;
+
+	void Start(){
+		if (spawnOnStart) {
+			Spawn (this.transform.position,this.transform.rotation);
+		}
+	}
 
 	public void Spawn(Vector3 pos, Quaternion rotation){
 		for (int i = 0; i < count; i++) {

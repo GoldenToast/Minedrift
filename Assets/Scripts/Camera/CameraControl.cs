@@ -78,8 +78,7 @@ public class CameraControl : MonoBehaviour
     }
 		
     public void SetStartPositionAndSize(){
-       
-		transform.position = m_Target.position;
+		Move ();
         m_Camera.orthographicSize = FindRequiredSize();
     }
 }

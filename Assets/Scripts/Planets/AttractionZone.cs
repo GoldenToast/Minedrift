@@ -3,8 +3,7 @@ using System.Collections;
 
 public class AttractionZone : MonoBehaviour {
 
-	public float planet_radius;
-	public float oversize = 1.25f;
+	public float zone_radius;
 
 	private FauxGravityAttractor attractor;
 
@@ -13,7 +12,7 @@ public class AttractionZone : MonoBehaviour {
 
 		SphereCollider attractionZone = this.gameObject.AddComponent<SphereCollider> ();
 		attractionZone.isTrigger = true;
-		attractionZone.radius = planet_radius * oversize;
+		attractionZone.radius = zone_radius;
 
 	}
 	

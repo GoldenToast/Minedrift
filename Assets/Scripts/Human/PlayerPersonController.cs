@@ -58,7 +58,7 @@ public class PlayerPersonController : MonoBehaviour {
 			rb.AddForce (transform.forward * jumpHeight , ForceMode.Impulse);
 		}
 	}
-
+		
 	private void move(float amount){
 		transform.RotateAround (attractorCenter, transform.up, -1 * amount * forwardSpeed);
 	}

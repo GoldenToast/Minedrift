@@ -6,6 +6,7 @@ using UnityEngine.SceneManagement;
 public class GameManager : MonoBehaviour
 {
        
+	public bool overrideGameLoop;
     public float m_StartDelay = 3f;         
     public float m_EndDelay = 3f;           
     public CameraControl m_CameraControl;   
@@ -21,8 +22,7 @@ public class GameManager : MonoBehaviour
 
 	private EnemyCounter enemyCounter;
 
-    private void Start()
-    {
+    private void Start(){
         enemyCounter = GetComponent<EnemyCounter>();
         m_StartWait = new WaitForSeconds(m_StartDelay);
         m_EndWait = new WaitForSeconds(m_EndDelay);
@@ -30,6 +30,9 @@ public class GameManager : MonoBehaviour
 		SpawnAllPlayers();
         SetCameraTargets();
 
+		if (overrideGameLoop) {
+			return;
+		}
         StartCoroutine(GameLoop());
     }
 
@@ -60,15 +63,14 @@ public class GameManager : MonoBehaviour
 		DisablePlayerControl ();
 		m_CameraControl.SetStartPositionAndSize ();
 		m_RoundNumber++;
-		m_MessageText.text = "Minedrift";
+		setText("Minedrift");
         yield return m_StartWait;
     }
 
 
-    private IEnumerator RoundPlaying()
-    {
+    private IEnumerator RoundPlaying(){
 		EnablePlayerControl ();
-		m_MessageText.text = "";       
+		setText("");       
         while (!nonLeft() && !allPlayerDead()) {
 			yield return null;
 		}
@@ -78,48 +80,44 @@ public class GameManager : MonoBehaviour
 		return m_Player.isDead();
     }
 
-    private IEnumerator RoundEnding()
-    {
+    private IEnumerator RoundEnding(){
 		DisablePlayerControl ();
 		string endmessage = EndMessage ();
-		m_MessageText.text = endmessage;
+		setText (endmessage);
         yield return m_EndWait;
     }
 
 
-    private bool nonLeft()
-    {
+    private bool nonLeft(){
         return enemyCounter.counter <= 0;
     }
 
 
-    private string EndMessage()
-    {
+    private string EndMessage(){
         string message = "You Win";
-        if (!nonLeft())
-        {
+        if (!nonLeft()) {
             message = "Game Over";
         }       
-
         return message;
     }
 
+	private void setText(string text){
+		if (m_MessageText) {
+			m_MessageText.text = text;
+		}
+	}
 
-    private void ResetAllPlayers()
-    {
-    
+    private void ResetAllPlayers() {
         m_Player.Reset();
     }
 
 
-    private void EnablePlayerControl()
-    {
+    private void EnablePlayerControl(){
 		m_Player.EnableControl();
     }
 
 
-    private void DisablePlayerControl()
-    {
+    private void DisablePlayerControl(){
 		m_Player.DisableControl();
     }
 }

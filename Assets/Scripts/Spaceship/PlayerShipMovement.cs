@@ -24,6 +24,7 @@ public class PlayerShipMovement : MonoBehaviour {
 
 	private Vector2 moveDirection;
 	private RaycastHit mouseHit;
+	private Transform fixPoint;
 
 	private Rigidbody rb;
 	private EnginePowerControl engineControl;
@@ -43,7 +44,29 @@ public class PlayerShipMovement : MonoBehaviour {
 		handleMouseLook ();
 		rotate ();
 		engineControl.adjustEnginePower (moveDirection.magnitude);
+	}
+
+	void FixedUpdate() {
+		moveForward (moveDirection.y);
+		moveSide (moveDirection.x);
     }
+
+	void OnTriggerEnter(Collider other){
+		if (other != null && other.GetComponent<AttractionZone> () != null) {
+			fixPoint = other.transform;
+		
+		}
+	}
+
+	void OnTriggerExit(Collider other){
+		if (other != null && other.GetComponent<AttractionZone> () != null) {
+			fixPoint = null;
+		}
+	}
+
+	void OnDrawGizmos(){
+		Gizmos.DrawSphere (mouseHit.point, .3f);
+	}
 
 	private void handleInput(String horizontal, String vertical){
 		float x = Input.GetAxis(horizontal);
@@ -76,27 +99,20 @@ public class PlayerShipMovement : MonoBehaviour {
 		Physics.Raycast (ray, out mouseHit, MouseLookMask);
 	}
 
-   
-	void rotate(){
-		Vector3 shipMousePos = new Vector3 (mouseHit.point.x, 0, mouseHit.point.z) - transform.position;
-		Quaternion newRot = Quaternion.LookRotation(shipMousePos);
+	private void rotate(){
+		Vector3 lookPos = new Vector3 (mouseHit.point.x, 0, mouseHit.point.z) - transform.position;
+		if (fixPoint) {
+			lookPos = transform.position - fixPoint.position;
+		}
+		Quaternion newRot = Quaternion.LookRotation(lookPos);
 		transform.rotation = Quaternion.Lerp(transform.rotation, newRot, rotationSpeed);
 	}
 
-	void moveForward(float amount){
+	private void moveForward(float amount){
 		rb.AddForce(Vector3.forward * amount * forwardSpeed,ForceMode.Impulse);
 	}
 
-	void moveSide(float amount){
+	private void moveSide(float amount){
 		rb.AddForce(Vector3.right * -1 * amount * sideSpeed,ForceMode.Impulse);
-	}
-
-    void FixedUpdate() {
-		moveForward (moveDirection.y);
-		moveSide (moveDirection.x);
-    }
-
-	void OnDrawGizmos(){
-		Gizmos.DrawSphere (mouseHit.point, .3f);
 	}
 }
