@@ -11,8 +11,7 @@ public abstract class AttackState : NavigationState {
 
     private MonoBehaviour projectileControl;
 
-    protected AttackState(BehaviorController controller)
-        : base(controller) {
+    protected AttackState(BehaviorController controller): base(controller) {
         transform = controller.transform;
 
         projectileControl = controller.GetComponent<EnemyProjectileControl>();
@@ -20,14 +19,14 @@ public abstract class AttackState : NavigationState {
     }
 
     public override void OnTriggerEnter(Collider other) {
-        if (other.CompareTag(Tags.PLAYER)) {
+		if (other.CompareTag(Tags.PLAYER_SHIP)) {
             player = player ?? other.transform;
             projectileControl.enabled = true;
         }
     }
 
     public override void OnTriggerExit(Collider other) {
-        if (other.CompareTag(Tags.PLAYER)) {
+		if (other.CompareTag(Tags.PLAYER_SHIP)) {
             player = null;
             rage = false;
             projectileControl.enabled = false;

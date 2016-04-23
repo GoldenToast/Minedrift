@@ -11,7 +11,7 @@ public static class Tags {
 	
     public const string COLLECTABLE = "Collectable";
 
-    public const string PLAYER_LASER = "PlayerLaser";
+    public const string PLAYER_SHIP_LASER = "PlayerShipLaser";
 
 	public const string ENEMY_LASER = "EnemyLaser";
 

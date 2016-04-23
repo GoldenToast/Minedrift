@@ -14,9 +14,9 @@ public class WanderState : NavigationState {
 
     public override void OnTriggerEnter(Collider other) {
         Debug.Log(other.tag);
-        if (other.CompareTag(Tags.PLAYER)) {
+		if (other.CompareTag(Tags.PLAYER_SHIP)) {
             controller.SwitchBehavior(Behavior.Attack, other);
-        } else if (other.CompareTag(Tags.PLAYER_LASER)) {
+        } else if (other.CompareTag(Tags.PLAYER_SHIP_LASER)) {
             controller.SwitchBehavior(Behavior.Defend, other);
         }
     }
